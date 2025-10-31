@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Graphics Midterm MCQ - Part 2</title>
+    <style>
+        /* ... (Your existing CSS code) ... */
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #e9ecef;
+            color: #000;
+        }
+        
+        .nav-link.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .developer-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* Estimate button width to be around 300px */
+            width: 290px; 
+            justify-content: center;
+        }
+        
+        .developer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .icon-code {
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        /* Wrapper for header text to prevent overlap */
+        .header-text {
+            /* Add padding to the right to avoid the button */
+            /* Button width (290px) + position (20px) + extra space (20px) = 330px */
+            padding-right: 330px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-box .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .question {
+            background: #ffffff;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .correct-answer {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .question {
+                page-break-inside: avoid;
+            }
+            
+            .developer-button {
+                display: none;
+            }
+        }
+
+        /* On screens 900px or less, the button might still overlap */
+        @media (max-width: 900px) {
+             .header-text {
+                padding-right: 0; /* Remove padding */
+                margin-top: 60px; /* Add margin to top to avoid button */
+            }
+            .developer-button {
+                /* Center the button on smaller desktop/tablet */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 290px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .developer-button {
+                position: static;
+                transform: none; /* Reset transform */
+                display: inline-flex;
+                margin-top: 15px;
+                width: auto; /* Reset width */
+            }
+            .header-text {
+                padding-right: 0;
+                margin-top: 0; /* Reset margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="https://itzsho3aib.github.io/shoaibs.portfolio/" class="developer-button" target="_blank">
+                <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib
+            </a>
+            <div class="header-text">
+                <h1>🎓 Computer Graphics Midterm MCQ (Part 2 of 4)</h1>
+                <p>Question Bank - Questions 126-250 | Chapters 2 & 3</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">125</div>
+                <div class="label">Questions in this part</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">2</div>
+                <div class="label">Chapters Covered</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">500+</div>
+                <div class="label">Total Questions</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="part1.html" class="nav-link">Part 1</a>
+            <a href="part2.html" class="nav-link">Part 2</a>
+            <a href="part3.html" class="nav-link">Part 3</a>
+            <a href="part4.html" class="nav-link">Part 4</a>
+        </div>
+        <div class="content">
+            
+            <div class="section">
+                <div class="section-title">🎨 Chapter 2: OpenGL Basics and Drawing (Continued)</div>
+                
+                <div class="question">
+                    <div class="question-number">Question 126</div>
+                    <div class="question-text">What is GLU (OpenGL Utility Library)?</div>
+                    <div class="options">
+                        <div class="option">A) A window-system-independent high-level library</div>
+                        <div class="option">B) The core OpenGL library for primitive rendering</div>
+                        <div class="option">C) A library providing higher-level routines, like polygon tessellation</div>
+                        <div class="option">D) A hardware-dependent interface</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 127</div>
+                    <div class="question-text">What is GLUT (OpenGL Utility Toolkit)?</div>
+                    <div class="options">
+                        <div class="option">A) The core OpenGL library</div>
+                        <div class="option">B) A window-system-independent high-level library for window management</div>
+                        <div class="option">C) A library for setting up projection matrices</div>
+                        <div class="option">D) The hardware driver for the graphics card</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 128</div>
+                    <div class="question-text">Is GLUT window-system-dependent or independent?</div>
+                    <div class="options">
+                        <div class="option">A) Dependent</div>
+                        <div class="option">B) Independent</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 129</div>
+                    <div class="question-text">What is the basic system drawing command `setPixel(x, y, color)` used for?</div>
+                    <div class="options">
+                        <div class="option">A) It draws a line to (x, y)</div>
+                        <div class="option">B) It sets the color of the pixel at location (x, y)</div>
+                        <div class="option">C) It sets the clear color for the whole window</div>
+                        <div class="option">D) It defines a vertex for a polygon</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 130</div>
+                    <div class="question-text">Why does OpenGL have multiple functions for a given logical function (e.g., `glVertex3f`, `glVertex2i`)?</div>
+                    <div class="options">
+                        <div class="option">A) Because it is object-oriented</div>
+                        <div class="option">B) Because it is not object-oriented and supports different data types/dimensions</div>
+                        <div class="option">C) For historical reasons, but only one is used now</div>
+                        <div class="option">D) Each function works on a different graphics card</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 131</div>
+                    <div class="question-text">In `glVertex3f(x,y,z)`, what does the '3' represent?</div>
+                    <div class="options">
+                        <div class="option">A) The data type is a float</div>
+                        <div class="option">B) The function takes 3 dimensions (x, y, z)</div>
+                        <div class="option">C) It belongs to the GL library</div>
+                        <div class="option">D) It is the 3rd version of the function</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 132</div>
+                    <div class="question-text">In `glVertex3f(x,y,z)`, what does the 'f' represent?</div>
+                    <div class="options">
+                        <div class="option">A) The arguments are floats (GLfloat)</div>
+                        <div class="option">B) The function takes 3 dimensions</div>
+                        <div class="option">C) It belongs to the GL library</div>
+                        <div class="option">D) It is for drawing filled polygons</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 133</div>
+                    <div class="question-text">In `glVertex3f(x,y,z)`, what does the 'gl' prefix represent?</div>
+                    <div class="options">
+                        <div class="option">A) The function takes 3 dimensions</div>
+                        <div class="option">B) The arguments are floats</div>
+                        <div class="option">C) The function belongs to the GL library</div>
+                        <div class="option">D) It stands for "Graphics Language"</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 134</div>
+                    <div class="question-text">What is the first GLUT function you must call to initialize the toolkit?</div>
+                    <div class="options">
+                        <div class="option">A) `glutCreateWindow()`</div>
+                        <div class="option">B) `glutInitDisplayMode()`</div>
+                        <div class="option">C) `glutInit(&argc, argv)`</div>
+                        <div class="option">D) `glutMainLoop()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 135</div>
+                    <div class="question-text">What function is used to set the window's top-left corner position on the screen?</div>
+                    <div class="options">
+                        <div class="option">A) `glutInitWindowSize()`</div>
+                        <div class="option">B) `glutInitWindowPosition()`</div>
+                        <div class="option">C) `glutCreateWindow()`</div>
+                        <div class="option">D) `gluOrtho2D()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 136</div>
+                    <div class="question-text">What function is used to set the window's width and height in pixels?</div>
+                    <div class="options">
+                        <div class="option">A) `glutInitWindowSize()`</div>
+                        <div class="option">B) `glutInitWindowPosition()`</div>
+                        <div class="option">C) `glViewport()`</div>
+                        <div class="option">D) `gluOrtho2D()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 137</div>
+                    <div class="question-text">What function is used to define the display mode (e.g., color mode, buffers)?</div>
+                    <div class="options">
+                        <div class="option">A) `glutCreateWindow()`</div>
+                        <div class="option">B) `glutInitDisplayMode()`</div>
+                        <div class="option">C) `glClearColor()`</div>
+                        <div class="option">D) `glMatrixMode()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 138</div>
+                    <div class="question-text">What does `GLUT_RGBA` or `GLUT_RGB` select in `glutInitDisplayMode`?</div>
+                    <div class="options">
+                        <div class="option">A) A color index mode</div>
+                        <div class="option">B) A single-buffered window</div>
+                        <div class="option">C) A double-buffered window</div>
+                        <div class="option">D) An RGBA (or RGB) color mode window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 139</div>
+                    <div class="question-text">What function is used to finally create the window with a title?</div>
+                    <div class="options">
+                        <div class="option">A) `glutCreateWindow()`</div>
+                        <div class="option">B) `glutInit()`</div>
+                        <div class="option">C) `glutDisplayFunc()`</div>
+                        <div class="option">D) `glutSetWindowTitle()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 140</div>
+                    <div class="question-text">What does `glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)` set?</div>
+                    <div class="options">
+                        <div class="option">A) A double-buffered, color-index window</div>
+                        <div class="option">B) A single-buffered, RGBA color window</div>
+                        <div class="option">C) A single-buffered, RGB color window</div>
+                        <div class="option">D) A double-buffered, RGB color window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 141</div>
+                    <div class="question-text">What function call is used to clear the window to the current background color?</div>
+                    <div class="options">
+                        <div class="option">A) `glClear(GL_COLOR_BUFFER_BIT)`</div>
+                        <div class="option">B) `glClearColor(r, g, b, a)`</div>
+                        <div class="option">C) `glFlush()`</div>
+                        <div class="option">D) `glEnd()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 142</div>
+                    <div class="question-text">How do you mark the beginning of a polygon primitive drawing?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">B) `glStart(GL_POLYGON)`</div>
+                        <div class="option">C) `glPolygon()`</div>
+                        <div class="option">D) `glBegin(GL_LINES)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 143</div>
+                    <div class="question-text">How do you specify a vertex in 2D with floats?</div>
+                    <div class="options">
+                        <div class="option">A) `glVertex2i(x, y)`</div>
+                        <div class="option">B) `glVertex3f(x, y, z)`</div>
+                        <div class="option">C) `glVertex2f(x, y)`</div>
+                        <div class="option">D) `glPoint(x, y)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 144</div>
+                    <div class="question-text">How do you mark the end of a primitive drawing block that was started with `glBegin`?</div>
+                    <div class="options">
+                        <div class="option">A) `glFinish()`</div>
+                        <div class="option">B) `glEnd()`</div>
+                        <div class="option">C) `glStop()`</div>
+                        <div class="option">D) `glFlush()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 145</div>
+                    <div class="question-text">What function is used to force all buffered OpenGL commands to be executed?</div>
+                    <div class="options">
+                        <div class="option">A) `glFlush()`</div>
+                        <div class="option">B) `glEnd()`</div>
+                        <div class="option">C) `glutMainLoop()`</div>
+                        <div class="option">D) `glClear()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 146</div>
+                    <div class="question-text">What function is used to register the function that redraws the display?</div>
+                    <div class="options">
+                        <div class="option">A) `glutMainLoop()`</div>
+                        <div class="option">B) `glutInit()`</div>
+                        <div class="option">C) `glutDisplayFunc(mydisplay)`</div>
+                        <div class="option">D) `glutCreateWindow("simple")`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 147</div>
+                    <div class="question-text">What function call enters the GLUT event processing loop and never returns?</div>
+                    <div class="options">
+                        <div class="option">A) `glutDisplayFunc()`</div>
+                        <div class="option">B) `glutMainLoop()`</div>
+                        <div class="option">C) `glFlush()`</div>
+                        <div class="option">D) `myInit()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 148</div>
+                    <div class="question-text">When is the display callback function (e.g., `mydisplay`) executed?</div>
+                    <div class="options">
+                        <div class="option">A) Only once at the start of the program</div>
+                        <div class="option">B) Whenever OpenGL decides the display must be refreshed</div>
+                        <div class="option">C) When a key is pressed</div>
+                        <div class="option">D) When the mouse is moved</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 149</div>
+                    <div class="question-text">What function creates a 2D orthographic projection matrix?</div>
+                    <div class="options">
+                        <div class="option">A) `glMatrixMode(GL_PROJECTION)`</div>
+                        <div class="option">B) `glViewport(0, 0, w, h)`</div>
+                        <div class="option">C) `gluOrtho2D(left, right, bottom, top)`</div>
+                        <div class="option">D) `glLoadIdentity()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 150</div>
+                    <div class="question-text">What coordinate system does `gluOrtho2D(0.0, 640.0, 480.0, 0.0)` set up?</div>
+                    <div class="options">
+                        <div class="option">A) "Right-side up" with (0,0) at bottom-left</div>
+                        <div class="option">B) "Upside down" with (0,0) at top-left</div>
+                        <div class="option">C) A 3D perspective view</div>
+                        <div class="option">D) A coordinate system from (-1,-1) to (1,1)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 151</div>
+                    <div class="question-text">In a "right-side up" window with `gluOrtho2D(0.0, 640.0, 0.0, 480.0)`, where is the origin (0,0)?</div>
+                    <div class="options">
+                        <div class="option">A) Top-left corner</div>
+                        <div class="option">B) Bottom-left corner</div>
+                        <div class="option">C) Center of the window</div>
+                        <div class="option">D) Top-right corner</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 152</div>
+                    <div class="question-text">In a "right-side up" window with `gluOrtho2D(0.0, 640.0, 0.0, 480.0)`, where is the point (0, 480)?</div>
+                    <div class="options">
+                        <div class="option">A) Top-left corner</div>
+                        <div class="option">B) Bottom-left corner</div>
+                        <div class="option">C) Top-right corner</div>
+                        <div class="option">D) Bottom-right corner</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 153</div>
+                    <div class="question-text">What function is typically called in the `myInit` function to set the window background color?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f()`</div>
+                        <div class="option">B) `glClear()`</div>
+                        <div class="option">C) `glClearColor()`</div>
+                        <div class="option">D) `glPointSize()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 154</div>
+                    <div class="question-text">What function is typically called in `myInit` to set the default drawing color?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f()`</div>
+                        <div class="option">B) `glClear()`</div>
+                        <div class="option">C) `glClearColor()`</div>
+                        <div class="option">D) `gluOrtho2D()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 155</div>
+                    <div class="question-text">What function sets the size of points to be drawn, e.g., "the dot is 8 by 8 pixels"?</div>
+                    <div class="options">
+                        <div class="option">A) `glPointSize()`</div>
+                        <div class="option">B) `glPoint()`</div>
+                        <div class="option">C) `glSetPixel()`</div>
+                        <div class="option">D) `glutWindowSize()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 156</div>
+                    <div class="question-text">What matrix mode must be set before calling `gluOrtho2D` to define the viewing volume?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_MODELVIEW`</div>
+                        <div class="option">B) `GL_PROJECTION`</div>
+                        <div class="option">C) `GL_TEXTURE`</div>
+                        <div class="option">D) `GL_COLOR`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 157</div>
+                    <div class="question-text">What function should be called after `glMatrixMode(GL_PROJECTION)` and before `gluOrtho2D` to reset the matrix?</div>
+                    <div class="options">
+                        <div class="option">A) `glLoadIdentity()`</div>
+                        <div class="option">B) `glClear()`</div>
+                        <div class="option">C) `glFlush()`</div>
+                        <div class="option">D) `glMatrixMode(GL_MODELVIEW)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 158</div>
+                    <div class="question-text">What function call is placed in `main` to call the initialization routine (like `myInit`)?</div>
+                    <div class="options">
+                        <div class="option">A) `glutMainLoop()`</div>
+                        <div class="option">B) `glutInit()`</div>
+                        <div class="option">C) `myInit()`</div>
+                        <div class="option">D) `glutDisplayFunc(myInit)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 159</div>
+                    <div class="question-text">What does `glClear(GL_COLOR_BUFFER_BIT)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Sets the background color</div>
+                        <div class="option">B) Clears the window using the current background color</div>
+                        <div class="option">C) Sets the drawing color</div>
+                        <div class="option">D) Clears the vertex buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 160</div>
+                    <div class="question-text">All vertex-specification commands (like `glVertex2f`) must be enclosed between which two functions?</div>
+                    <div class="options">
+                        <div class="option">A) `glStart()` and `glStop()`</div>
+                        <div class="option">B) `glBegin()` and `glEnd()`</div>
+                        <div class="option">C) `myInit()` and `glutMainLoop()`</div>
+                        <div class="option">D) `glClear()` and `glFlush()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 161</div>
+                    <div class="question-text">What does `glFlush()` do?</div>
+                    <div class="options">
+                        <div class="option">A) Clears the screen</div>
+                        <div class="option">B) Resets the projection matrix</div>
+                        <div class="option">C) Sends all output to the display</div>
+                        <div class="option">D) Enters the main event loop</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 162</div>
+                    <div class="question-text">What does `GLUT_SINGLE` in `glutInitDisplayMode` request?</div>
+                    <div class="options">
+                        <div class="option">A) A single window</div>
+                        <div class="option">B) A single-buffered window</div>
+                        <div class="option">C) A single color (grayscale)</div>
+                        <div class="option">D) A single user input</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 163</div>
+                    <div class="question-text">`glutWindowPosition(0,0)` sets the window position from which corner of the display?</div>
+                    <div class="options">
+                        <div class="option">A) Bottom-left</div>
+                        <div class="option">B) Bottom-right</div>
+                        <div class="option">C) Top-left</div>
+                        <div class="option">D) Top-right</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 164</div>
+                    <div class="question-text">What does `glClearColor(0.0, 0.0, 0.0, 1.0)` set the background color to?</div>
+                    <div class="options">
+                        <div class="option">A) White</div>
+                        <div class="option">B) Red</div>
+                        <div class="option">C) Black (and opaque)</div>
+                        <div class="option">D) Transparent gray</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 165</div>
+                    <div class="question-text">What does `glColor3f(1.0, 1.0, 1.0)` set the drawing color to?</div>
+                    <div class="options">
+                        <div class="option">A) Black</div>
+                        <div class="option">B) White</div>
+                        <div class="option">C) Red</div>
+                        <div class="option">D) Blue</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 166</div>
+                    <div class="question-text">What does `glOrtho(left, right, bottom, top, near, far)` define?</div>
+                    <div class="options">
+                        <div class="option">A) A 3D viewing volume</div>
+                        <div class="option">B) A 2D window size</div>
+                        <div class="option">C) A viewport on the screen</div>
+                        <div class="option">D) The drawing color</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 167</div>
+                    <div class="question-text">By default, where does OpenGL place the camera in object space?</div>
+                    <div class="options">
+                        <div class="option">A) At (1, 1, 1)</div>
+                        <div class="option">B) At the origin (0, 0, 0)</div>
+                        <div class="option">C) At (0, 0, -1)</div>
+                        <div class="option">D) At (0, 0, 1)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 168</div>
+                    <div class="question-text">In which direction does the default OpenGL camera point?</div>
+                    <div class="options">
+                        <div class="option">A) The positive x direction</div>
+                        <div class="option">B) The positive z direction</div>
+                        <div class="option">C) The negative y direction</div>
+                        <div class="option">D) The negative z direction</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 169</div>
+                    <div class="question-text">What is the default viewing volume in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) A sphere of radius 1</div>
+                        <div class="option">B) A box centered at the origin with a side length of 2</div>
+                        <div class="option">C) A box from (0,0,0) to (1,1,1)</div>
+                        <div class="option">D) The entire screen</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 170</div>
+                    <div class="question-text">In the default orthographic view, points are projected forward along the z-axis onto which plane?</div>
+                    <div class="options">
+                        <div class="option">A) The plane z = 0</div>
+                        <div class="option">B) The plane z = 1</div>
+                        <div class="option">C) The plane z = -1</div>
+                        <div class="option">D) The plane y = 0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 171</div>
+                    <div class="question-text">What function is used to set the current matrix mode (e.g., for projection or modelview)?</div>
+                    <div class="options">
+                        <div class="option">A) `glMatrixMode()`</div>
+                        <div class="option">B) `glLoadIdentity()`</div>
+                        <div class="option">C) `glOrtho()`</div>
+                        <div class="option">D) `glViewport()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 172</div>
+                    <div class="question-text">Why must `glLoadIdentity()` be called before `glOrtho`?</div>
+                    <div class="options">
+                        <div class="option">A) To clear the screen</div>
+                        <div class="option">B) Because transformation functions are incremental and must start from an identity matrix</div>
+                        <div class="option">C) To set the drawing color to white</div>
+                        <div class="option">D) To initialize the GLUT library</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 173</div>
+                    <div class="question-text">In 2D, `gluOrtho2D` turns the 3D viewing volume into a:</div>
+                    <div class="options">
+                        <div class="option">A) Clipping window</div>
+                        <div class="option">B) Viewport</div>
+                        <div class="option">C) Perspective projection</div>
+                        <div class="option">D) Frame buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 174</div>
+                    <div class="question-text">What primitive is used to draw a single filled triangle?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_POINTS`</div>
+                        <div class="option">B) `GL_LINES`</div>
+                        <div class="option">C) `GL_TRIANGLES`</div>
+                        <div class="option">D) `GL_LINE_LOOP`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 175</div>
+                    <div class="question-text">What function sets the size of a point in pixels, e.g., `glPointSize(3.0)` for a 3x3 pixel point?</div>
+                    <div class="options">
+                        <div class="option">A) `glSetPixelSize()`</div>
+                        <div class="option">B) `glPointSize()`</div>
+                        <div class="option">C) `glDotSize()`</div>
+                        <div class="option">D) `glVertexSize()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 176</div>
+                    <div class="question-text">Which function sets the drawing color to red?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f(1.0, 0.0, 0.0)`</div>
+                        <div class="option">B) `glColor3f(0.0, 1.0, 0.0)`</div>
+                        <div class="option">C) `glColor3f(0.0, 0.0, 1.0)`</div>
+                        <div class="option">D) `glColor3f(1.0, 1.0, 1.0)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 177</div>
+                    <div class="question-text">Which function sets the drawing color to green?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f(1.0, 0.0, 0.0)`</div>
+                        <div class="option">B) `glColor3f(0.0, 1.0, 0.0)`</div>
+                        <div class="option">C) `glColor3f(0.0, 0.0, 1.0)`</div>
+                        <div class="option">D) `glColor3f(0.0, 0.0, 0.0)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 178</div>
+                    <div class="question-text">Which function sets the drawing color to blue?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f(1.0, 0.0, 0.0)`</div>
+                        <div class="option">B) `glColor3f(0.0, 1.0, 0.0)`</div>
+                        <div class="option">C) `glColor3f(0.0, 0.0, 1.0)`</div>
+                        <div class="option">D) `glColor3f(1.0, 1.0, 0.0)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 179</div>
+                    <div class="question-text">In the transformation `x' = Ax + C` and `y' = By + D` for fitting data, what do A and C represent?</div>
+                    <div class="options">
+                        <div class="option">A) A is scaling, C is translation</div>
+                        <div class="option">B) A is translation, C is scaling</div>
+                        <div class="option">C) Both are scaling factors</div>
+                        <div class="option">D) Both are translation factors</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 180</div>
+                    <div class="question-text">In the transformation `x' = Ax + B` and `y' = Cy + D`, what do A and C represent?</div>
+                    <div class="options">
+                        <div class="option">A) Translators</div>
+                        <div class="option">B) Scalars (scaling factors)</div>
+                        <div class="option">C) Vertex coordinates</div>
+                        <div class="option">D) Screen dimensions</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 181</div>
+                    <div class="question-text">In the transformation `x' = Ax + B` and `y' = Cy + D`, what do B and D represent?</div>
+                    <div class="options">
+                        <div class="option">A) Translators (shifting)</div>
+                        <div class="option">B) Scalars (scaling factors)</div>
+                        <div class="option">C) Vertex coordinates</div>
+                        <div class="option">D) Data range (min/max)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 182</div>
+                    <div class="question-text">How do you draw separate, disconnected lines using `glBegin`?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_LINE_STRIP)`</div>
+                        <div class="option">B) `glBegin(GL_LINE_LOOP)`</div>
+                        <div class="option">C) `glBegin(GL_LINES)`</div>
+                        <div class="option">D) `glBegin(GL_POLYGON)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 183</div>
+                    <div class="question-text">If 6 vertices are specified between `glBegin(GL_LINES)` and `glEnd()`, how many lines are drawn?</div>
+                    <div class="options">
+                        <div class="option">A) 6</div>
+                        <div class="option">B) 5</div>
+                        <div class="option">C) 3 (taken in pairs)</div>
+                        <div class="option">D) 1 (a polyline)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 184</div>
+                    <div class="question-text">What function sets the thickness of lines (e.g., `glLineWidth(4.0)`)?</div>
+                    <div class="options">
+                        <div class="option">A) `glLineSize()`</div>
+                        <div class="option">B) `glLineThickness()`</div>
+                        <div class="option">C) `glLineWidth()`</div>
+                        <div class="option">D) `glLineStyle()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 185</div>
+                    <div class="question-text">What is the default line thickness in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) 1.0</div>
+                        <div class="option">B) 2.0</div>
+                        <div class="option">C) 0.0</div>
+                        <div class="option">D) 4.0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 186</div>
+                    <div class="question-text">What is a "polyline"?</div>
+                    <div class="options">
+                        <div class="option">A) A filled polygon</div>
+                        <div class="option">B) A collection of line segments joined end to end</div>
+                        <div class="option">C) A primitive for drawing multiple points</div>
+                        <div class="option">D) A curved line defined by a formula</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 187</div>
+                    <div class="question-text">In OpenGL, what is a polyline (a collection of line segments joined end to end) called?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINES`</div>
+                        <div class="option">B) `GL_POLYGON`</div>
+                        <div class="option">C) A "line strip" (`GL_LINE_STRIP`)</div>
+                        <div class="option">D) A "line loop" (`GL_LINE_LOOP`)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 188</div>
+                    <div class="question-text">How do you draw a "line strip" (an open polyline)?</div>
+                    <div class="options">
+                        <div class="option">A) By specifying vertices between `glBegin(GL_LINE_STRIP)` and `glEnd()`</div>
+                        <div class="option">B) By specifying vertices between `glBegin(GL_LINES)` and `glEnd()`</div>
+                        <div class="option">C) By specifying vertices between `glBegin(GL_POLYLINE)` and `glEnd()`</div>
+                        <div class="option">D) By calling `glPolyline()` with an array of points</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 189</div>
+                    <div class="question-text">To draw a closed polygon outline (like the shell of the house), which primitive is used?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINE_STRIP`</div>
+                        <div class="option">B) `GL_LINE_LOOP`</div>
+                        <div class="option">C) `GL_POLYGON`</div>
+                        <div class="option">D) `GL_LINES`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 190</div>
+                    <div class="question-text">Can polygons drawn using `GL_LINE_LOOP` be filled with a color or pattern?</div>
+                    <div class="options">
+                        <div class="option">A) Yes, by default</div>
+                        <div class="option">B) No, they cannot be filled</div>
+                        <div class="option">C) Only if `glFill(GL_TRUE)` is called</div>
+                        <div class="option">D) Yes, but only with a stipple pattern</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 191</div>
+                    <div class="question-text">To draw a *filled* convex polygon, you must use:</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_LINE_LOOP)`</div>
+                        <div class="option">B) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">C) `glBegin(GL_FILL_POLYGON)`</div>
+                        <div class="option">D) `glRecti()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 192</div>
+                    <div class="question-text">What is an "aligned rectangle"?</div>
+                    <div class="options">
+                        <div class="option">A) Any polygon with four sides</div>
+                        <div class="option">B) A special type of polygon with four sides, aligned with the coordinate axes</div>
+                        <div class="option">C) A rectangle drawn with `GL_LINE_LOOP`</div>
+                        <div class="option">D) A rectangle drawn with `GL_QUADS`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 193</div>
+                    <div class="question-text">What function is a shortcut for drawing a *filled*, aligned rectangle?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">B) `glBegin(GL_QUADS)`</div>
+                        <div class="option">C) `glRecti(x1, y1, x2, y2)`</div>
+                        <div class="option">D) `glDrawRect(x1, y1, x2, y2)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 194</div>
+                    <div class="question-text">The function `glRecti(x1, y1, x2, y2)` will draw the rectangle filled with what?</div>
+                    <div class="options">
+                        <div class="option">A) The current foreground color</div>
+                        <div class="option">B) The current background color</div>
+                        <div class="option">C) Black</div>
+                        <div class="option">D) White</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 195</div>
+                    <div class="question-text">In the `drawChessBoard` example, how is the color for a square determined?</div>
+                    <div class="options">
+                        <div class="option">A) Based on whether `i` is even or odd</div>
+                        <div class="option">B) Based on whether `j` is even or odd</div>
+                        <div class="option">C) Based on whether `(i+j)` is even or odd</div>
+                        <div class="option">D) It is chosen randomly for every square</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 196</div>
+                    <div class="question-text">A convex polygon will be filled in the current color if drawn using:</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">B) `glBegin(GL_LINE_LOOP)`</div>
+                        <div class="option">C) `glBegin(GL_TRIANGLE_FAN)`</div>
+                        <div class="option">D) All of the above</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 197</div>
+                    <div class="question-text">What is the `myDisplay` function, registered with `glutDisplayFunc`, an example of?</div>
+                    <div class="options">
+                        <div class="option">A) A standard C library function</div>
+                        <div class="option">B) A callback function</div>
+                        <div class="option">C) An initialization function</div>
+                        <div class="option">D) A matrix transformation function</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 198</div>
+                    <div class="question-text">What is the `myReshape` function, registered with `glutReshapeFunc`, an example of?</div>
+                    <div class="options">
+                        <div class="option">A) A function that runs whenever the window changes size</div>
+                        <div class="option">B) A function that draws the main graphics</div>
+                        <div class="option">C) A function that handles keyboard input</div>
+                        <div class="option">D) A function that initializes the program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 199</div>
+                    <div class="question-text">What is the `myKeyboard` function, registered with `glutKeyboardFunc`, an example of?</div>
+                    <div class="options">
+                        <div class="option">A) A function that runs when a key is pressed</div>
+                        <div class="option">B) A function that runs when the mouse is moved</div>
+                        <div class="option">C) A function that redraws the window</div>
+                        <div class="option">D) A function that sets the 2D projection</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 200</div>
+                    <div class="question-text">What is the `myMouse` function, registered with `glutMouseFunc`, an example of?</div>
+                    <div class="options">
+                        <div class="option">A) A function that runs when the mouse button is pressed or released</div>
+                        <div class="option">B) A function that runs when the mouse is moved</div>
+                        <div class="option">C) A function that runs when a key is pressed</div>
+                        <div class="option">D) A function that redraws the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 201</div>
+                    <div class="question-text">Which GLUT function registers the display callback?</div>
+                    <div class="options">
+                        <div class="option">A) `glutDisplayFunc()`</div>
+                        <div class="option">B) `glutReshapeFunc()`</div>
+                        <div class="option">C) `glutMouseFunc()`</div>
+                        <div class="option">D) `glutKeyboardFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 202</div>
+                    <div class="question-text">Which GLUT function registers the reshape (window resize) callback?</div>
+                    <div class="options">
+                        <div class="option">A) `glutDisplayFunc()`</div>
+                        <div class="option">B) `glutReshapeFunc()`</div>
+                        <div class="option">C) `glutMouseFunc()`</div>
+                        <div class="option">D) `glutKeyboardFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 203</div>
+                    <div class="question-text">Which GLUT function registers the mouse button callback?</div>
+                    <div class="options">
+                        <div class="option">A) `glutDisplayFunc()`</div>
+                        <div class="option">B) `glutReshapeFunc()`</div>
+                        <div class="option">C) `glutMouseFunc()`</div>
+                        <div class="option">D) `glutMotionFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 204</div>
+                    <div class="question-text">Which GLUT function registers the keyboard press callback?</div>
+                    <div class="options">
+                        <div class="option">A) `glutMouseFunc()`</div>
+                        <div class="option">B) `glutReshapeFunc()`</div>
+                        <div class="option">C) `glutDisplayFunc()`</div>
+                        <div class="option">D) `glutKeyboardFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 205</div>
+                    <div class="question-text">Which GLUT function registers the callback for when the mouse is moved *while* a button is pressed?</div>
+                    <div class="options">
+                        <div class="option">A) `glutMouseFunc()`</div>
+                        <div class="option">B) `glutMotionFunc()`</div>
+                        <div class="option">C) `glutPassiveMotionFunc()`</div>
+                        <div class="option">D) `glutKeyboardFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 206</div>
+                    <div class="question-text">In the mouse callback `void myMouse(int button, int state, int x, int y)`, what are the possible values for `button`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLUT_LEFT_BUTTON`, `GLUT_MIDDLE_BUTTON`, `GLUT_RIGHT_BUTTON`</div>
+                        <div class="option">B) `GLUT_UP`, `GLUT_DOWN`</div>
+                        <div class="option">C) 0, 1, 2</div>
+                        <div class="option">D) 'L', 'M', 'R'</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 207</div>
+                    <div class="question-text">In the mouse callback `void myMouse(int button, int state, int x, int y)`, what are the possible values for `state`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLUT_LEFT_BUTTON`, `GLUT_RIGHT_BUTTON`</div>
+                        <div class="option">B) `GLUT_UP`, `GLUT_DOWN`</div>
+                        <div class="option">C) `GLUT_PRESSED`, `GLUT_RELEASED`</div>
+                        <div class="option">D) `0`, `1`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 208</div>
+                    <div class="question-text">In the mouse callback, how is the `y` coordinate measured?</div>
+                    <div class="options">
+                        <div class="option">A) Number of pixels from the bottom of the window</div>
+                        <div class="option">B) Number of pixels down from the top of the window</div>
+                        <div class="option">C) A world coordinate value between -1.0 and 1.0</div>
+                        <div class="option">D) The same as the `x` coordinate</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 209</div>
+                    <div class="question-text">In the keyboard callback `void myKeyboard(unsigned char key, int x, int y)`, what does the `key` parameter represent?</div>
+                    <div class="options">
+                        <div class="option">A) The ASCII value of the key pressed</div>
+                        <div class="option">B) A special key code (like `GLUT_KEY_LEFT`)</div>
+                        <div class="option">C) The state of the key (up or down)</div>
+                        <div class="option">D) The mouse x-position</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 210</div>
+                    <div class="question-text">What do the `x` and `y` parameters in the keyboard callback represent?</div>
+                    <div class="options">
+                        <div class="option">A) The ASCII value of the key</div>
+                        <div class="option">B) The position of the mouse at the time the key was pressed</div>
+                        <div class="option">C) The center of the window</div>
+                        <div class="option">D) They are not used and are always 0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🖼️ Chapter 3: Windows, Viewports and Clipping</div>
+
+                <div class="question">
+                    <div class="question-number">Question 211</div>
+                    <div class="question-text">What is the 'world window'?</div>
+                    <div class="options">
+                        <div class="option">A) The rectangle on the screen where the image is drawn</div>
+                        <div class="option">B) The rectangle in world coordinates that defines what to capture</div>
+                        <div class="option">C) The entire physical screen</div>
+                        <div class="option">D) The coordinate system of the screen (pixels)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 212</div>
+                    <div class="question-text">What is the 'viewport'?</div>
+                    <div class="options">
+                        <div class="option">A) The rectangle in world coordinates that defines what to capture</div>
+                        <div class="option">B) The 3D scene being viewed</div>
+                        <div class="option">C) The rectangle in screen coordinates where the image is displayed</div>
+                        <div class="option">D) The user interface window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 213</div>
+                    <div class="question-text">Does the world window and viewport have to be the same size or aspect ratio?</div>
+                    <div class="options">
+                        <div class="option">A) Yes, they must always be identical</div>
+                        <div class="option">B) No, they are not necessarily the same size or aspect ratio</div>
+                        <div class="option">C) They must have the same size but can have different aspect ratios</div>
+                        <div class="option">D) They must have the same aspect ratio but can have different sizes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 214</div>
+                    <div class="question-text">What is the process of stretching, shrinking, and moving coordinates from the window to the viewport called?</div>
+                    <div class="options">
+                        <div class="option">A) Clipping</div>
+                        <div class="option">B) Rendering</div>
+                        <div class="option">C) Modeling</div>
+                        <div class="option">D) Mapping</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 215</div>
+                    <div class="question-text">The window-to-viewport mapping involves which two types of transformations?</div>
+                    <div class="options">
+                        <div class="option">A) Scaling and translation (moving)</div>
+                        <div class="option">B) Rotation and scaling</div>
+                        <div class="option">C) Clipping and rendering</div>
+                        <div class="option">D) Projection and modeling</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 216</div>
+                    <div class="question-text">What happens to information outside the world window (or viewport) during transformation?</div>
+                    <div class="options">
+                        <div class="option">A) It is scaled to fit</div>
+                        <div class="option">B) It is clipped away</div>
+                        <div class="option">C) It is drawn in a different color</div>
+                        <div class="option">D) It causes an error</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 217</div>
+                    <div class="question-text">Which of these is the correct order for the 5-step Window-to-Viewport Transformation?</div>
+                    <div class="options">
+                        <div class="option">A) Choose Window -> Clip -> Translate to origin -> Scale -> Translate to position</div>
+                        <div class="option">B) Choose Window -> Scale -> Translate to origin -> Clip -> Translate to position</div>
+                        <div class="option">C) Translate to origin -> Scale -> Clip -> Translate to position -> Choose Window</div>
+                        <div class="option">D) Scale -> Translate -> Clip -> Choose Window -> Translate to origin</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 218</div>
+                    <div class="question-text">The world window is described by which four borders?</div>
+                    <div class="options">
+                        <div class="option">A) xmin, ymin, xmax, ymax</div>
+                        <div class="option">B) W.l, W.t, W.r, W.b (left, top, right, bottom)</div>
+                        <div class="option">C) V.l, V.t, V.r, V.b</div>
+                        <div class="option">D) startX, startY, endX, endY</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 219</div>
+                    <div class="question-text">The viewport is described by which four borders in the coordinate system of the screen?</div>
+                    <div class="options">
+                        <div class="option">A) W.l, W.t, W.r, W.b</div>
+                        <div class="option">B) xmin, ymin, xmax, ymax</div>
+                        <div class="option">C) V.l, V.t, V.r, V.b (left, top, right, bottom)</div>
+                        <div class="option">D) x, y, width, height</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 220</div>
+                    <div class="question-text">The window-to-viewport mapping is based on what two linear formulas for screen coordinates (sx, sy)?</div>
+                    <div class="options">
+                        <div class="option">A) sx = Ax + C, sy = By + D</div>
+                        <div class="option">B) sx = A/x, sy = B/y</div>
+                        <div class="option">C) sx = x^A, sy = y^B</div>
+                        <div class="option">D) sx = sin(x) + C, sy = cos(y) + D</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 221</div>
+                    <div class="question-text">What is the formula for mapping the x-coordinate `x` to the screen coordinate `sx`?</div>
+                    <div class="options">
+                        <div class="option">A) (sx - V.l) / (V.r - V.l) = (x - W.l) / (W.r - W.l)</div>
+                        <div class="option">B) (sx - W.l) / (W.r - W.l) = (x - V.l) / (V.r - V.l)</div>
+                        <div class="option">C) sx = x * (V.r / W.r)</div>
+                        <div class="option">D) sx = x + (V.l - W.l)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 222</div>
+                    <div class="question-text">In the mapping `sx = Ax + C`, what is the formula for the scale factor `A`?</div>
+                    <div class="options">
+                        <div class="option">A) V.l - A*W.l</div>
+                        <div class="option">B) (W.r - W.l) / (V.r - V.l)</div>
+                        <div class="option">C) (V.r - V.l) / (W.r - W.l)</div>
+                        <div class="option">D) V.r - V.l</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 223</div>
+                    <div class="question-text">In the mapping `sx = Ax + C`, what is the formula for the translation `C`?</div>
+                    <div class="options">
+                        <div class="option">A) V.l - A*W.l</div>
+                        <div class="option">B) A*W.l - V.l</div>
+                        <div class="option">C) (V.r - V.l) / (W.r - W.l)</div>
+                        <div class="option">D) W.l - A*V.l</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 224</div>
+                    <div class="question-text">What is the formula for mapping the y-coordinate `y` to the screen coordinate `sy`?</div>
+                    <div class="options">
+                        <div class="option">A) (sy - V.b) / (V.t - V.b) = (y - W.b) / (W.t - W.b)</div>
+                        <div class="option">B) (sy - W.b) / (W.t - W.b) = (y - V.b) / (V.t - V.b)</div>
+                        <div class="option">C) sy = y * (V.t / W.t)</div>
+                        <div class="option">D) sy = y + (V.b - W.b)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 225</div>
+                    <div class="question-text">In the mapping `sy = By + D`, what is the formula for the scale factor `B`?</div>
+                    <div class="options">
+                        <div class="option">A) (W.t - W.b) / (V.t - V.b)</div>
+                        <div class="option">B) V.b - B*W.b</div>
+                        <div class="option">C) (V.t - V.b) / (W.t - W.b)</div>
+                        <div class="option">D) V.t - V.b</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 226</div>
+                    <div class="question-text">In the mapping `sy = By + D`, what is the formula for the translation `D`?</div>
+                    <div class="options">
+                        <div class="option">A) (V.t - V.b) / (W.t - W.b)</div>
+                        <div class="option">B) V.b - B*W.b</div>
+                        <div class="option">C) W.b - B*V.b</div>
+                        <div class="option">D) V.t - B*W.t</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 227</div>
+                    <div class="question-text">Does the programmer need to perform the window-to-viewport mapping calculations manually when using `glVertex2f()`?</div>
+                    <div class="options">
+                        <div class="option">A) Yes, always</div>
+                        <div class="option">B) No, OpenGL does all the hard work for you</div>
+                        <div class="option">C) Only when using 3D</div>
+                        <div class="option">D) Only when using `glVertex2i()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 228</div>
+                    <div class="question-text">What OpenGL function is used to set the world window coordinates?</div>
+                    <div class="options">
+                        <div class="option">A) `glViewport()`</div>
+                        <div class="option">B) `gluOrtho2D()`</div>
+                        <div class="option">C) `glWindow()`</div>
+                        <div class="option">D) `glMatrixMode()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 229</div>
+                    <div class="question-text">What is the prototype for `gluOrtho2D`?</div>
+                    <div class="options">
+                        <div class="option">A) `void gluOrtho2D(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top)`</div>
+                        <div class="option">B) `void gluOrtho2D(GLint x, GLint y, GLint width, GLint height)`</div>
+                        <div class="option">C) `void gluOrtho2D(GLdouble xmin, GLdouble ymin, GLdouble zmin, GLdouble xmax, GLdouble ymax, GLdouble zmax)`</div>
+                        <div class="option">D) `void gluOrtho2D(GLdouble fov, GLdouble aspect, GLdouble near, GLdouble far)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 230</div>
+                    <div class="question-text">What OpenGL function is used to set the viewport?</div>
+                    <div class="options">
+                        <div class="option">A) `glViewport()`</div>
+                        <div class="option">B) `gluOrtho2D()`</div>
+                        <div class="option">C) `glSetViewport()`</div>
+                        <div class="option">D) `glutCreateWindow()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 231</div>
+                    <div class="question-text">What is the prototype for `glViewport`?</div>
+                    <div class="options">
+                        <div class="option">A) `void glViewport(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top)`</div>
+                        <div class="option">B) `void glViewport(GLint x, GLint y, GLint width, GLint height)`</div>
+                        <div class="option">C) `void glViewport(GLint xmin, GLint ymin)`</div>
+                        <div class="option">D) `void glViewport(GLint size)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 232</div>
+                    <div class="question-text">By default, what is the viewport set to?</div>
+                    <div class="options">
+                        <div class="option">A) The entire screen window</div>
+                        <div class="option">B) A 100x100 square at the origin</div>
+                        <div class="option">C) The same dimensions as the world window</div>
+                        <div class="option">D) It has no default and must be set</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 233</div>
+                    <div class="question-text">What two "setup" functions must precede `gluOrtho2D()`?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin()` and `glEnd()`</div>
+                        <div class="option">B) `glClear()` and `glFlush()`</div>
+                        <div class="option">C) `glMatrixMode(GL_PROJECTION)` and `glLoadIdentity()`</div>
+                        <div class="option">D) `glViewport()` and `glutCreateWindow()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 234</div>
+                    <div class="question-text">A `glViewport` call `glViewport(x, y, width, height)` sets the lower left corner to (x, y) and the upper right corner to...?</div>
+                    <div class="options">
+                        <div class="option">A) (width, height)</div>
+                        <div class="option">B) (x + width, y + height)</div>
+                        <div class="option">C) (x - width, y - height)</div>
+                        <div class="option">D) (width - x, height - y)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 235</div>
+                    <div class="question-text">Given `glViewport(40, 60, 360, 240)`, what are the (x, y) coordinates of the lower left corner?</div>
+                    <div class="options">
+                        <div class="option">A) (0, 0)</div>
+                        <div class="option">B) (40, 60)</div>
+                        <div class="option">C) (360, 240)</div>
+                        <div class="option">D) (400, 300)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 236</div>
+                    <div class="question-text">Given `glViewport(40, 60, 360, 240)`, what are the (x, y) coordinates of the upper right corner?</div>
+                    <div class="options">
+                        <div class="option">A) (360, 240)</div>
+                        <div class="option">B) (40, 60)</div>
+                        <div class="option">C) (400, 300)</div>
+                        <div class="option">D) (320, 180)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 237</div>
+                    <div class="question-text">To set a world window with corners at (-10, -6) and (10, 6), what is the correct `gluOrtho2D` call?</div>
+                    <div class="options">
+                        <div class="option">A) `gluOrtho2D(-10, 10, -6, 6)`</div>
+                        <div class="option">B) `gluOrtho2D(-10, -6, 10, 6)`</div>
+                        <div class="option">C) `gluOrtho2D(0, 10, 0, 6)`</div>
+                        <div class="option">D) `gluOrtho2D(-10, 10, 6, -6)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 238</div>
+                    <div class="question-text">To set a viewport with a lower-left corner at (0, 0) and dimensions 600x400, what is the correct `glViewport` call?</div>
+                    <div class="options">
+                        <div class="option">A) `glViewport(0, 0, 600, 400)`</div>
+                        <div class="option">B) `glViewport(0, 0, 400, 600)`</div>
+                        <div class="option">C) `glViewport(0, 600, 0, 400)`</div>
+                        <div class="option">D) `glViewport(600, 400, 0, 0)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 239</div>
+                    <div class="question-text">What function can be created to bundle `glMatrixMode(GL_PROJECTION)`, `glLoadIdentity()`, and `gluOrtho2D()` into one call?</div>
+                    <div class="options">
+                        <div class="option">A) `setViewport()`</div>
+                        <div class="option">B) `setWindow()`</div>
+                        <div class="option">C) `myInit()`</div>
+                        <div class="option">D) `myDisplay()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 240</div>
+                    <div class="question-text">How can `glViewport` be called using `left`, `right`, `bottom`, `top` parameters (like `setViewport(left, right, bottom, top)`)?</div>
+                    <div class="options">
+                        <div class="option">A) `glViewport(left, bottom, right, top)`</div>
+                        <div class="option">B) `glViewport(left, right, bottom, top)`</div>
+                        <div class="option">C) `glViewport(left, bottom, right - left, top - bottom)`</div>
+                        <div class="option">D) `glViewport(left, right, top, bottom)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 241</div>
+                    <div class="question-text">When plotting a function where the y-range is unknown, how can you find the `ymin` and `ymax` for the window?</div>
+                    <div class="options">
+                        <div class="option">A) Guess the values</div>
+                        <div class="option">B) Use `glFindMinMax()`</div>
+                        <div class="option">C) Pass over the data twice: once to find min/max, and a second time to draw</div>
+                        <div class="option">D) Set the viewport to match the data</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 242</div>
+                    <div class="question-text">To draw an undistorted version of data, what must be true about the window and viewport?</div>
+                    <div class="options">
+                        <div class="option">A) They must have the same size</div>
+                        <div class="option">B) They must have the same aspect ratio</div>
+                        <div class="option">C) They must both be centered at the origin</div>
+                        <div class="option">D) They must have the same (x, y) coordinates</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 243</div>
+                    <div class="question-text">What is the "aspect ratio" of a window or viewport?</div>
+                    <div class="options">
+                        <div class="option">A) Width / Height</div>
+                        <div class="option">B) Height / Width</div>
+                        <div class="option">C) Width * Height</div>
+                        <div class="option">D) Width + Height</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 244</div>
+                    <div class="question-text">If the aspect ratio (W/H) is less than 1 (e.g., 3/5), the rectangle is:</div>
+                    <div class="options">
+                        <div class="option">A) Taller than wide</div>
+                        <div class="option">B) Wider than tall</div>
+                        <div class="option">C) A perfect square</div>
+                        <div class="option">D) Invalid</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 245</div>
+                    <div class="question-text">If the aspect ratio (W/H) is greater than 1 (e.g., 5/3), the rectangle is:</div>
+                    <div class="options">
+                        <div class="option">A) Taller than wide</div>
+                        <div class="option">B) Wider than tall</div>
+                        <div class="option">C) A perfect square</div>
+                        <div class="option">D) Invalid</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 246</div>
+                    <div class="question-text">Case (a): If the window aspect ratio (R) is *greater* than the screen aspect ratio (W/H), what is the correct `setViewport` call to preserve the aspect ratio?</div>
+                    <div class="options">
+                        <div class="option">A) `setViewport(0, W, 0, W/R)`</div>
+                        <div class="option">B) `setViewport(0, H*R, 0, H)`</div>
+                        <div class="option">C) `setViewport(0, W, 0, H)`</div>
+                        <div class="option">D) `setViewport(0, R, 0, W/H)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 247</div>
+                    <div class="question-text">In Case (a) (R > W/H), the viewport will be fully extended in which dimension of the screen window?</div>
+                    <div class="options">
+                        <div class="option">A) Height</div>
+                        <div class="option">B) Width</div>
+                        <div class="option">C) Neither</div>
+                        <div class="option">D) Both</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 248</div>
+                    <div class="question-text">Case (b): If the window aspect ratio (R) is *less* than the screen aspect ratio (W/H), what is the correct `setViewport` call to preserve the aspect ratio?</div>
+                    <div class="options">
+                        <div class="option">A) `setViewport(0, W, 0, W/R)`</div>
+                        <div class="option">B) `setViewport(0, H*R, 0, H)`</div>
+                        <div class="option">C) `setViewport(0, W, 0, H)`</div>
+                        <div class="option">D) `setViewport(0, R, 0, W/H)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 249</div>
+                    <div class="question-text">In Case (b) (R < W/H), the viewport will be fully extended in which dimension of the screen window?</div>
+                    <div class="options">
+                        <div class="option">A) Height</div>
+                        <div class="option">B) Width</div>
+                        <div class="option">C) Neither</div>
+                        <div class="option">D) Both</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 250</div>
+                    <div class="question-text">What event is generated when the user resizes the screen window at run time?</div>
+                    <div class="options">
+                        <div class="option">A) A mouse event</div>
+                        <div class="option">B) A keyboard event</div>
+                        <div class="option">C) A display event</div>
+                        <div class="option">D) A resize event</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+            </div>
+            
+            </div>
+
+        <div class="footer">
+            <p>Computer Graphics Midterm MCQ Bank - Complete Coverage of All 3 Chapters | 500+ Questions | <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib</p>
+        </div>
+    </div>
+</body>
+</html>

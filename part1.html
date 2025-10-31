@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Graphics Midterm MCQ - Part 1</title>
+    <style>
+        /* ... (Your existing CSS code) ... */
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #e9ecef;
+            color: #000;
+        }
+        
+        .nav-link.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .developer-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* Estimate button width to be around 300px */
+            width: 290px; 
+            justify-content: center;
+        }
+        
+        .developer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .icon-code {
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        /* Wrapper for header text to prevent overlap */
+        .header-text {
+            /* Add padding to the right to avoid the button */
+            /* Button width (290px) + position (20px) + extra space (20px) = 330px */
+            padding-right: 330px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-box .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .question {
+            background: #ffffff;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .correct-answer {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .question {
+                page-break-inside: avoid;
+            }
+            
+            .developer-button {
+                display: none;
+            }
+        }
+
+        /* On screens 900px or less, the button might still overlap */
+        @media (max-width: 900px) {
+             .header-text {
+                padding-right: 0; /* Remove padding */
+                margin-top: 60px; /* Add margin to top to avoid button */
+            }
+            .developer-button {
+                /* Center the button on smaller desktop/tablet */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 290px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .developer-button {
+                position: static;
+                transform: none; /* Reset transform */
+                display: inline-flex;
+                margin-top: 15px;
+                width: auto; /* Reset width */
+            }
+            .header-text {
+                padding-right: 0;
+                margin-top: 0; /* Reset margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="https://itzsho3aib.github.io/shoaibs.portfolio/" class="developer-button" target="_blank">
+                <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib
+            </a>
+            <div class="header-text">
+                <h1>🎓 Computer Graphics Midterm MCQ (Part 1 of 4)</h1>
+                <p>Question Bank - Questions 1-125 | Chapters 1 & 2</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">125</div>
+                <div class="label">Questions in this part</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">2</div>
+                <div class="label">Chapters Covered</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">500+</div>
+                <div class="label">Total Questions</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="part1.html" class="nav-link">Part 1</a>
+            <a href="part2.html" class="nav-link">Part 2</a>
+            <a href="part3.html" class="nav-link">Part 3</a>
+            <a href="part4.html" class="nav-link">Part 4</a>
+        </div>
+        <div class="content">
+            
+            <div class="section">
+                <div class="section-title">📚 Chapter 1: Introduction to Computer Graphics</div>
+                
+                <div class="question">
+                    <div class="question-number">Question 1</div>
+                    <div class="question-text">What is Computer Graphics concerned with?</div>
+                    <div class="options">
+                        <div class="option">A) Processing existing images</div>
+                        <div class="option">B) Producing images using a computer</div>
+                        <div class="option">C) Analyzing scenes</div>
+                        <div class="option">D) Reconstructing 3D objects from photographs</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 2</div>
+                    <div class="question-text">What are the three main tasks in Computer Graphics mentioned in the slides?</div>
+                    <div class="options">
+                        <div class="option">A) Modeling, Rendering, Animation</div>
+                        <div class="option">B) Programming, Designing, Testing</div>
+                        <div class="option">C) Image Processing, Computer Vision, AI</div>
+                        <div class="option">D) Hardware, Software, Drivers</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 3</div>
+                    <div class="question-text">What does 'Modeling' in computer graphics involve?</div>
+                    <div class="options">
+                        <div class="option">A) Generating 2D images of objects</div>
+                        <div class="option">B) Describing how objects move</div>
+                        <div class="option">C) Creating and representing the geometry of objects in the 3D world</div>
+                        <div class="option">D) Applying color and lighting to a scene</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 4</div>
+                    <div class="question-text">What does 'Rendering' in computer graphics involve?</div>
+                    <div class="options">
+                        <div class="option">A) Generating 2D images of the objects</div>
+                        <div class="option">B) Describing how objects move using physics</div>
+                        <div class="option">C) Creating the geometry of objects in a 3D world</div>
+                        <div class="option">D) Taking a real object and turning it into a virtual one</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 5</div>
+                    <div class="question-text">What does 'Animation' in computer graphics involve?</div>
+                    <div class="options">
+                        <div class="option">A) Generating 2D images from models</div>
+                        <div class="option">B) Describing how objects move</div>
+                        <div class="option">C) Creating the geometry of objects</div>
+                        <div class="option">D) Adding surface texture and shadows</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 6</div>
+                    <div class="question-text">What is the simplest form of a model according to the slides?</div>
+                    <div class="options">
+                        <div class="option">A) Solid model</div>
+                        <div class="option">B) Rendered model</div>
+                        <div class="option">C) Wireframe model</div>
+                        <div class="option">D) Texture model</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 7</div>
+                    <div class="question-text">Which of the following is NOT listed as a component of Rendering?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Lighting</div>
+                        <div class="option">C) Biomechanics</div>
+                        <div class="option">D) Surface texture</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 8</div>
+                    <div class="question-text">Which of the following is listed as an application of Computer-aided Design (CAD)?</div>
+                    <div class="options">
+                        <div class="option">A) Air traffic control systems</div>
+                        <div class="option">B) Designing drills or houses</div>
+                        <div class="option">C) Volume visualization of a brain</div>
+                        <div class="option">D) Flight simulators</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 9</div>
+                    <div class="question-text">What is the main task of Image Processing?</div>
+                    <div class="options">
+                        <div class="option">A) To create or synthesize images from a model</div>
+                        <div class="option">B) To improve or alter images that were created elsewhere</div>
+                        <div class="option">C) To recognize and reconstruct a 3D model from images</div>
+                        <div class="option">D) To create animations</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 10</div>
+                    <div class="question-text">What is the main task of Computer Graphics?</div>
+                    <div class="options">
+                        <div class="option">A) To create pictures and synthesize them based on a model</div>
+                        <div class="option">B) To improve or alter existing images</div>
+                        <div class="option">C) To eliminate noise or enhance contrast in an image</div>
+                        <div class="option">D) To detect and classify patterns in an image</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 11</div>
+                    <div class="question-text">What field deals with eliminating noise or enhancing contrast in an image?</div>
+                    <div class="options">
+                        <div class="option">A) Computer Graphics</div>
+                        <div class="option">B) Image Enhancement</div>
+                        <div class="option">C) Computer Vision</div>
+                        <div class="option">D) Modeling</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 12</div>
+                    <div class="question-text">What field deals with recognizing and reconstructing a 3D model from several images?</div>
+                    <div class="options">
+                        <div class="option">A) Computer Vision</div>
+                        <div class="option">B) Image Processing</div>
+                        <div class="option">C) Computer Graphics</div>
+                        <div class="option">D) Animation</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 13</div>
+                    <div class="question-text">According to the INPUT/OUTPUT diagram, what field has a DESCRIPTION as INPUT and an IMAGE as OUTPUT?</div>
+                    <div class="options">
+                        <div class="option">A) DIGITAL IMAGE PROCESSING</div>
+                        <div class="option">B) COMPUTER VISION</div>
+                        <div class="option">C) COMPUTER GRAPHICS</div>
+                        <div class="option">D) ARTIFICIAL INTELLIGENCE</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 14</div>
+                    <div class="question-text">According to the INPUT/OUTPUT diagram, what field has an IMAGE as INPUT and an IMAGE as OUTPUT?</div>
+                    <div class="options">
+                        <div class="option">A) DIGITAL IMAGE PROCESSING</div>
+                        <div class="option">B) COMPUTER VISION</div>
+                        <div class="option">C) COMPUTER GRAPHICS</div>
+                        <div class="option">D) ARTIFICIAL INTELLIGENCE</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 15</div>
+                    <div class="question-text">According to the INPUT/OUTPUT diagram, what field has an IMAGE as INPUT and a DESCRIPTION as OUTPUT?</div>
+                    <div class="options">
+                        <div class="option">A) DIGITAL IMAGE PROCESSING</div>
+                        <div class="option">B) COMPUTER VISION</div>
+                        <div class="option">C) COMPUTER GRAPHICS</div>
+                        <div class="option">D) ARTIFICIAL INTELLIGENCE</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 16</div>
+                    <div class="question-text">What are the two kinds of viewing screens mentioned?</div>
+                    <div class="options">
+                        <div class="option">A) Raster display and Vector display</div>
+                        <div class="option">B) CRT and Flat-Panel</div>
+                        <div class="option">C) Monitors and Printers</div>
+                        <div class="option">D) Input and Output</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 17</div>
+                    <div class="question-text">According to the timeline, Vector Display technology was used from 1963 until the:</div>
+                    <div class="options">
+                        <div class="option">A) 1970s</div>
+                        <div class="option">B) 1980s</div>
+                        <div class="option">C) 1990s</div>
+                        <div class="option">D) 1960s</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 18</div>
+                    <div class="question-text">What is another name for a Vector Display?</div>
+                    <div class="options">
+                        <div class="option">A) Raster-Scan Display</div>
+                        <div class="option">B) Random-Scan or Calligraphic Display</div>
+                        <div class="option">C) Pixel Map Display</div>
+                        <div class="option">D) CRT Display</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 19</div>
+                    <div class="question-text">What does the Refresh Buffer in a Vector Display store?</div>
+                    <div class="options">
+                        <div class="option">A) A pixel map of the image</div>
+                        <div class="option">B) The display list or display program</div>
+                        <div class="option">C) Only the colors for the image</div>
+                        <div class="option">D) Interaction data from the mouse</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 20</div>
+                    <div class="question-text">How is an image drawn on a Vector Display?</div>
+                    <div class="options">
+                        <div class="option">A) The beam is scanned left-to-right, top-to-bottom</div>
+                        <div class="option">B) The beam is deflected from endpoint to endpoint</div>
+                        <div class="option">C) The display is refreshed one pixel at a time</div>
+                        <div class="option">D) It uses a "pixel map" to store information</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 21</div>
+                    <div class="question-text">What is a major disadvantage of Vector Displays?</div>
+                    <div class="options">
+                        <div class="option">A) They are too slow for line drawings</div>
+                        <div class="option">B) They cannot show smoothly-shaded regions or scanned images</div>
+                        <div class="option">C) They have very low resolution</div>
+                        <div class="option">D) They are computationally demanding for wireframes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 22</div>
+                    <div class="question-text">What is the most familiar type of Raster Display?</div>
+                    <div class="options">
+                        <div class="option">A) Vector monitors</div>
+                        <div class="option">B) Calligraphic displays</div>
+                        <div class="option">C) Video monitors and flat-panel displays</div>
+                        <div class="option">D) Random-scan displays</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 23</div>
+                    <div class="question-text">What does "Pixel" stand for?</div>
+                    <div class="options">
+                        <div class="option">A) Picture Element</div>
+                        <div class="option">B) Picture Extension</div>
+                        <div class="option">C) Point Element</div>
+                        <div class="option">D) Primary Excel</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 24</div>
+                    <div class="question-text">How is a Raster Image stored in a computer?</div>
+                    <div class="options">
+                        <div class="option">A) As a list of display commands</div>
+                        <div class="option">B) As a set of mathematical formulas for lines</div>
+                        <div class="option">C) As an array of numerical values</div>
+                        <div class="option">D) As a display program in the refresh buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 25</div>
+                    <div class="question-text">The array of numerical values for a raster image is often called a:</div>
+                    <div class="options">
+                        <div class="option">A) Pixel map or bitmap</div>
+                        <div class="option">B) Display list</div>
+                        <div class="option">C) Vector list</div>
+                        <div class="option">D) Refresh buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 26</div>
+                    <div class="question-text">How is the screen scanned on a Raster Display?</div>
+                    <div class="options">
+                        <div class="option">A) Randomly from point to point</div>
+                        <div class="option">B) Sequentially from left to right, top to bottom</div>
+                        <div class="option">C) Based on commands from a display list</div>
+                        <div class="option">D) From the center outwards</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 27</div>
+                    <div class="question-text">What is "Aliasing" in the context of raster graphics?</div>
+                    <div class="options">
+                        <div class="option">A) The image is not smooth (e.g., jagged edges)</div>
+                        <div class="option">B) The ability to display filled areas</div>
+                        <div class="option">C) A display technology from the 1960s</div>
+                        <div class="option">D) The process of mapping a window to a viewport</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 28</div>
+                    <div class="question-text">What is a key advantage of Raster Displays over Vector Displays?</div>
+                    <div class="options">
+                        <div class="option">A) They produce perfectly smooth lines without aliasing</div>
+                        <div class="option">B) They are better for drawing wireframes</div>
+                        <div class="option">C) They are less computationally demanding</div>
+                        <div class="option">D) Lower cost and the ability to display filled areas</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 29</div>
+                    <div class="question-text">How many gray levels can be produced with 2 bits per pixel?</div>
+                    <div class="options">
+                        <div class="option">A) 2</div>
+                        <div class="option">B) 4</div>
+                        <div class="option">C) 8</div>
+                        <div class="option">D) 16</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 30</div>
+                    <div class="question-text">How many gray levels can be produced with 8 bits per pixel?</div>
+                    <div class="options">
+                        <div class="option">A) 16</div>
+                        <div class="option">B) 64</div>
+                        <div class="option">C) 128</div>
+                        <div class="option">D) 256</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 31</div>
+                    <div class="question-text">An image with only 2 pixel values (black and white) is called:</div>
+                    <div class="options">
+                        <div class="option">A) Bi-level (or 1 bit per pixel)</div>
+                        <div class="option">B) 8-bit grayscale</div>
+                        <div class="option">C) True color</div>
+                        <div class="option">D) Indexed color</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 32</div>
+                    <div class="question-text">What is "color depth"?</div>
+                    <div class="options">
+                        <div class="option">A) The number of pixels in an image</div>
+                        <div class="option">B) The total number of bits allowed for R, G, and B values</div>
+                        <div class="option">C) The physical size of the monitor</div>
+                        <div class="option">D) The number of gray levels in an image</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 33</div>
+                    <div class="question-text">What color depth do "True color" images typically have?</div>
+                    <div class="options">
+                        <div class="option">A) 8 bits</div>
+                        <div class="option">B) 16 bits</div>
+                        <div class="option">C) 24 or 32 bits</div>
+                        <div class="option">D) 64 bits</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 34</div>
+                    <div class="question-text">In the RGB color model, what does (1, 1, 1) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Black</div>
+                        <div class="option">B) Red</div>
+                        <div class="option">C) Blue</div>
+                        <div class="option">D) White</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 35</div>
+                    <div class="question-text">In the RGB color model, what does (0, 0, 0) represent?</div>
+                    <div class="options">
+                        <div class="option">A) White</div>
+                        <div class="option">B) Black</div>
+                        <div class="option">C) Green</div>
+                        <div class="option">D) Gray</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 36</div>
+                    <div class="question-text">In the RGB color model, what does (1, 0, 0) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Green</div>
+                        <div class="option">B) Blue</div>
+                        <div class="option">C) Red</div>
+                        <div class="option">D) Black</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 37</div>
+                    <div class="question-text">In the RGB color model, what does (0, 1, 0) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Red</div>
+                        <div class="option">B) Green</div>
+                        <div class="option">C) Blue</div>
+                        <div class="option">D) White</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 38</div>
+                    <div class="question-text">In the RGB color model, what does (0, 0, 1) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Yellow</div>
+                        <div class="option">B) Magenta</div>
+                        <div class="option">C) Cyan</div>
+                        <div class="option">D) Blue</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 39</div>
+                    <div class="question-text">In the RGB color model, what does (0, 1, 1) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Cyan</div>
+                        <div class="option">B) Magenta</div>
+                        <div class="option">C) Yellow</div>
+                        <div class="option">D) White</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 40</div>
+                    <div class="question-text">In the RGB color model, what does (1, 0, 1) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Cyan</div>
+                        <div class="option">B) Yellow</div>
+                        <div class="option">C) Magenta</div>
+                        <div class="option">D) Red</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 41</div>
+                    <div class="question-text">In the RGB color model, what does (1, 1, 0) represent?</div>
+                    <div class="options">
+                        <div class="option">A) Yellow</div>
+                        <div class="option">B) Cyan</div>
+                        <div class="option">C) Magenta</div>
+                        <div class="option">D) Green</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 42</div>
+                    <div class="question-text">What is "Indexed Color"?</div>
+                    <div class="options">
+                        <div class="option">A) A 24-bit true color system</div>
+                        <div class="option">B) A system where colors are indices into a color look-up table (LUT)</div>
+                        <div class="option">C) A display method used only by vector displays</div>
+                        <div class="option">D) A system that only uses 3 bits for color (8 colors total)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 43</div>
+                    <div class="question-text">In OpenGL, the `glColor3f` function takes color values that range from:</div>
+                    <div class="options">
+                        <div class="option">A) 0 to 255</div>
+                        <div class="option">B) 0.0 to 1.0</div>
+                        <div class="option">C) -1.0 to 1.0</div>
+                        <div class="option">D) 0 to 8</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 44</div>
+                    <div class="question-text">In OpenGL, the `glColor3ub` function takes color values that range from:</div>
+                    <div class="options">
+                        <div class="option">A) 0 to 255</div>
+                        <div class="option">B) 0.0 to 1.0</div>
+                        <div class="option">C) -1.0 to 1.0</div>
+                        <div class="option">D) 0 to 3</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 45</div>
+                    <div class="question-text">What is the additive color formula shown in the slides?</div>
+                    <div class="options">
+                        <div class="option">A) C = r + g + b</div>
+                        <div class="option">B) C = R + G + B</div>
+                        <div class="option">C) C = rR + gG + bB</div>
+                        <div class="option">D) C = (R + G + B) / 3</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 46</div>
+                    <div class="question-text">What do computer graphics tools consist of?</div>
+                    <div class="options">
+                        <div class="option">A) Only software</div>
+                        <div class="option">B) Only hardware</div>
+                        <div class="option">C) Both software and hardware</div>
+                        <div class="option">D) Only graphics libraries</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 47</div>
+                    <div class="question-text">Which of the following is listed as a hardware tool for computer graphics?</div>
+                    <div class="options">
+                        <div class="option">A) Compiler</div>
+                        <div class="option">B) Mouse or trackball</div>
+                        <div class="option">C) Operating System</div>
+                        <div class="option">D) Graphics routines</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 48</div>
+                    <div class="question-text">Which of the following is listed as a software tool for computer graphics?</div>
+                    <div class="options">
+                        <div class="option">A) Video monitor</div>
+                        <div class="option">B) Graphics card</div>
+                        <div class="option">C) Printer</div>
+                        <div class="option">D) Operating system, editor, compiler</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 49</div>
+                    <div class="question-text">What is OpenGL described as?</div>
+                    <div class="options">
+                        <div class="option">A) A hardware-dependent library</div>
+                        <div class="option">B) A device-independent graphics library</div>
+                        <div class="option">C) An operating system</div>
+                        <div class="option">D) A type of display technology</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 50</div>
+                    <div class="question-text">What is an example of an output device for computer graphics?</div>
+                    <div class="options">
+                        <div class="option">A) Mouse</div>
+                        <div class="option">B) Trackball</div>
+                        <div class="option">C) Monitors and printers</div>
+                        <div class="option">D) Keyboard</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 51</div>
+                    <div class="question-text">What is the "refresh buffer" in a vector display also called?</div>
+                    <div class="options">
+                        <div class="option">A) Pixel map</div>
+                        <div class="option">B) Bitmap</div>
+                        <div class="option">C) Display list or display program</div>
+                        <div class="option">D) Frame buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 52</div>
+                    <div class="question-text">How is region filling typically simulated on vector displays?</div>
+                    <div class="options">
+                        <div class="option">A) By cross-hatching with different line patterns</div>
+                        <div class="option">B) By setting pixel values in a bitmap</div>
+                        <div class="option">C) By using a color look-up table</div>
+                        <div class="option">D) It is not possible</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 53</div>
+                    <div class="question-text">A 640x480 image requires information to be stored for how many pixels?</div>
+                    <div class="options">
+                        <div class="option">A) 640</div>
+                        <div class="option">B) 480</div>
+                        <div class="option">C) 1,120</div>
+                        <div class="option">D) 307,200</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 54</div>
+                    <div class="question-text">Is a pixel a relative or absolute unit?</div>
+                    <div class="options">
+                        <div class="option">A) Absolute, with a fixed size</div>
+                        <div class="option">B) Relative, with no absolute size</div>
+                        <div class="option">C) Always 1mm x 1mm</div>
+                        <div class="option">D) Only absolute in vector displays</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 55</div>
+                    <div class="question-text">What is the term for the path the beam scans across the screen in a raster display?</div>
+                    <div class="options">
+                        <div class="option">A) Scan line</div>
+                        <div class="option">B) Vector line</div>
+                        <div class="option">C) Refresh path</div>
+                        <div class="option">D) Display list</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 56</div>
+                    <div class="question-text">What is the term for when the scan beam moves from the end of one line to the start of the next?</div>
+                    <div class="options">
+                        <div class="option">A) Vertical retrace</div>
+                        <div class="option">B) Horizontal retrace</div>
+                        <div class="option">C) Random scan</div>
+                        <div class="option">D) Aliasing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 57</div>
+                    <div class="question-text">What is the term for when the scan beam moves from the bottom-right of the screen to the top-left?</div>
+                    <div class="options">
+                        <div class="option">A) Vertical retrace</div>
+                        <div class="option">B) Horizontal retrace</div>
+                        <div class="option">C) Scan line</div>
+                        <div class="option">D) Endpoint deflection</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 58</div>
+                    <div class="question-text">What hardware component is shown in the raster display diagram that is not in the vector display diagram?</div>
+                    <div class="options">
+                        <div class="option">A) Display Controller (DC)</div>
+                        <div class="option">B) Refresh Buffer</div>
+                        <div class="option">C) Video Controller</div>
+                        <div class="option">D) Host Computer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 59</div>
+                    <div class="question-text">What is a disadvantage of raster displays mentioned in the slides?</div>
+                    <div class="options">
+                        <div class="option">A) High cost</div>
+                        <div class="option">B) Inability to show filled areas</div>
+                        <div class="option">C) Aliasing (jagged edges)</div>
+                        <div class="option">D) Cannot be used for realistic images</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 60</div>
+                    <div class="question-text">How many shades of gray can be produced by 4 bits per pixel?</div>
+                    <div class="options">
+                        <div class="option">A) 4</div>
+                        <div class="option">B) 8</div>
+                        <div class="option">C) 16</div>
+                        <div class="option">D) 256</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 61</div>
+                    <div class="question-text">If an image has 2^n pixel values, how many bits per pixel does it require?</div>
+                    <div class="options">
+                        <div class="option">A) 2</div>
+                        <div class="option">B) n</div>
+                        <div class="option">C) 2^n</div>
+                        <div class="option">D) n/2</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 62</div>
+                    <div class="question-text">What is a common color depth that uses 3 bits for R, 3 for G, and 2 for B?</div>
+                    <div class="options">
+                        <div class="option">A) 3-bit color</div>
+                        <div class="option">B) 24-bit color</div>
+                        <div class="option">C) 8-bit color</div>
+                        <div class="option">D) 16-bit color</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 63</div>
+                    <div class="question-text">What is a "color look-up table" (LUT) often used with?</div>
+                    <div class="options">
+                        <div class="option">A) 8-bit color depth (Indexed Color)</div>
+                        <div class="option">B) 24-bit True Color</div>
+                        <div class="option">C) Vector displays</div>
+                        <div class="option">D) Bi-level images</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 64</div>
+                    <div class="question-text">What is a disadvantage of True Color (24/32 bit) images?</div>
+                    <div class="options">
+                        <div class="option">A) Poor color representation</div>
+                        <div class="option">B) They require huge amounts of memory</div>
+                        <div class="option">C) They cannot be displayed on raster monitors</div>
+                        <div class="option">D) They require a color look-up table</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 65</div>
+                    <div class="question-text">In an RGB system, where are the color components stored?</div>
+                    <div class="options">
+                        <div class="option">A) In the display controller</div>
+                        <div class="option">B) In the color look-up table</div>
+                        <div class="option">C) Separately in the frame buffer</div>
+                        <div class="option">D) In the host computer's RAM</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 66</div>
+                    <div class="question-text">What is a primary reason Indexed Color is not as important now?</div>
+                    <div class="options">
+                        <div class="option">A) Memory is now inexpensive</div>
+                        <div class="option">B) It doesn't work with raster displays</div>
+                        <div class="option">C) It provides more colors than True Color</div>
+                        <div class="option">D) It is too slow for modern shading</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 67</div>
+                    <div class="question-text">How many possible colors are there with a 3-bit color depth?</div>
+                    <div class="options">
+                        <div class="option">A) 3</div>
+                        <div class="option">B) 6</div>
+                        <div class="option">C) 8</div>
+                        <div class="option">D) 16</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 68</div>
+                    <div class="question-text">What is a "flight simulator" an example of?</div>
+                    <div class="options">
+                        <div class="option">A) Computer-aided Design (CAD)</div>
+                        <div class="option">B) Process Monitoring</div>
+                        <div class="option">C) Displaying Simulations</div>
+                        <div class="option">D) Medical Visualization</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 69</div>
+                    <div class="question-text">What is an example of an input device listed as a hardware tool?</div>
+                    <div class="options">
+                        <div class="option">A) Printer</div>
+                        <div class="option">B) Video monitor</div>
+                        <div class="option">C) Mouse</div>
+                        <div class="option">D) Graphics card</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 70</div>
+                    <div class="question-text">Adobe Photoshop is a common example of what?</div>
+                    <div class="options">
+                        <div class="option">A) A paint system and photo manipulation system</div>
+                        <div class="option">B) A computer-aided design (CAD) system</div>
+                        <div class="option">C) A process monitoring system</div>
+                        <div class="option">D) A volume visualization tool</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 71</div>
+                    <div class="question-text">What is "Volume Visualization" used for, according to the example?</div>
+                    <div class="options">
+                        <div class="option">A) Air traffic control</div>
+                        <div class="option">B) Designing magazines</div>
+                        <div class="option">C) Informing a physician about the health of the brain</div>
+                        <div class="option">D) Creating 3D models of drills</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 72</div>
+                    <div class="question-text">What application uses schematic representations and flashing icons to alert a user?</div>
+                    <div class="options">
+                        <div class="option">A) Paint systems</div>
+                        <div class="option">B) Process Monitoring (e.g., air traffic control)</div>
+                        <div class="option">C) Computer-aided Design (CAD)</div>
+                        <div class="option">D) Virtual Reality</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 73</div>
+                    <div class="question-text">Which application area allows for analysis and simulation, such as testing a casing's strength or weight?</div>
+                    <div class="options">
+                        <div class="option">A) Medical Visualization</div>
+                        <div class="option">B) User Interfaces</div>
+                        <div class="option">C) Computer-aided Design (CAD)</div>
+                        <div class="option">D) Browsing the World Wide Web</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 74</div>
+                    <div class="question-text">What is "Virtual Reality" listed as?</div>
+                    <div class="options">
+                        <div class="option">A) A graphics application</div>
+                        <div class="option">B) A display technology</div>
+                        <div class="option">C) A hardware tool</div>
+                        <div class="option">D) A software tool</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 75</div>
+                    <div class="question-text">What is an example of "Image enhancement"?</div>
+                    <div class="options">
+                        <div class="option">A) Creating a 3D model</div>
+                        <div class="option">B) Animating an object</div>
+                        <div class="option">C) Eliminating noise or enhancing contrast</div>
+                        <div class="option">D) Recognizing a face in a photo</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 76</div>
+                    <div class="question-text">What is "Pattern recognition" concerned with?</div>
+                    <div class="options">
+                        <div class="option">A) Detecting and classifying patterns in an image</div>
+                        <div class="option">B) Creating patterns for 3D textures</div>
+                        <div class="option">C) Drawing line patterns on vector displays</div>
+                        <div class="option">D) Synthesizing images from a model</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 77</div>
+                    <div class="question-text">What are the two sub-types of Raster displays mentioned?</div>
+                    <div class="options">
+                        <div class="option">A) Vector and Random-Scan</div>
+                        <div class="option">B) Calligraphic and CRT</div>
+                        <div class="option">C) Cathode-Ray Tube (CRT) and Flat-Panel Display</div>
+                        <div class="option">D) Monitor and Printer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 78</div>
+                    <div class="question-text">What kind of commands are found in a vector display's display list?</div>
+                    <div class="options">
+                        <div class="option">A) Point- and line-plotting commands</div>
+                        <div class="option">B) Pixel color values</div>
+                        <div class="option">C) Shading and texture commands</div>
+                        <div class="option">D) Animation keyframes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 79</div>
+                    <div class="question-text">How fast could vector displays draw vector pictures?</div>
+                    <div class="options">
+                        <div class="option">A) Hundreds of vectors per second</div>
+                        <div class="option">B) Thousands of vectors per second</div>
+                        <div class="option">C) Hundreds of thousands of vectors per second</div>
+                        <div class="option">D) Millions of vectors per second</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 80</div>
+                    <div class="question-text">What term describes the jagged edges seen on raster images of straight lines?</div>
+                    <div class="options">
+                        <div class="option">A) Rendering</div>
+                        <div class="option">B) Modeling</div>
+                        <div class="option">C) Aliasing</div>
+                        <div class="option">D) Retracing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 81</div>
+                    <div class="question-text">A pixel map is a rectangular array of:</div>
+                    <div class="options">
+                        <div class="option">A) Numerical values representing pixels</div>
+                        <div class="option">B) Display commands</div>
+                        <div class="option">C) Vector endpoints</div>
+                        <div class="option">D) Hardware addresses</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 82</div>
+                    <div class="question-text">What is the "frame buffer" in an RGB system?</div>
+                    <div class="options">
+                        <div class="option">A) The display list for a vector display</div>
+                        <div class="option">B) The memory that stores the color components for each pixel</div>
+                        <div class="option">C) A color look-up table</div>
+                        <div class="option">D) A hardware tool for input</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 83</div>
+                    <div class="question-text">In an 8-bit indexed color system, how many colors are typically in the look-up table?</div>
+                    <div class="options">
+                        <div class="option">A) 8</div>
+                        <div class="option">B) 16</div>
+                        <div class="option">C) 64</div>
+                        <div class="option">D) 256 (since indices are 8 bits)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 84</div>
+                    <div class="question-text">Which of the following is NOT an application of computer graphics?</div>
+                    <div class="options">
+                        <div class="option">A) Medical Visualization</div>
+                        <div class="option">B) Virtual Reality</div>
+                        <div class="option">C) Computer-aided Design</div>
+                        <div class="option">D) Artificial Intelligence (as a separate field in the diagram)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 85</div>
+                    <div class="question-text">What is the simplest form of model, which consists of interconnected lines?</div>
+                    <div class="options">
+                        <div class="option">A) Wireframe Model</div>
+                        <div class="option">B) Solid Model</div>
+                        <div class="option">C) Rendered Model</div>
+                        <div class="option">D) Animated Model</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 86</div>
+                    <div class="question-text">Which rendering component deals with effects like shininess or dullness of a surface?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Lighting</div>
+                        <div class="option">C) Shading</div>
+                        <div class="option">D) Animation</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 87</div>
+                    <div class="question-text">Which rendering component deals with how light sources illuminate objects?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Lighting</div>
+                        <div class="option">C) Shading</div>
+                        <div class="option">D) Modeling</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 88</div>
+                    <div class="question-text">What allows a programmer to use a common set of functions on different systems?</div>
+                    <div class="options">
+                        <div class="option">A) A device-independent graphics library</div>
+                        <div class="option">B) A device-dependent graphics library</div>
+                        <div class="option">C) A display controller</div>
+                        <div class="option">D) A vector display</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 89</div>
+                    <div class="question-text">What does the "b" suffix in an OpenGL function like `glColor3b` stand for?</div>
+                    <div class="options">
+                        <div class="option">A) 8-bit integer (GLbyte)</div>
+                        <div class="option">B) 32-bit integer (GLint)</div>
+                        <div class="option">C) 32-bit float (GLfloat)</div>
+                        <div class="option">D) 8-bit unsigned integer (GLubyte)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 90</div>
+                    <div class="question-text">What does the "f" suffix in an OpenGL function like `glColor3f` stand for?</div>
+                    <div class="options">
+                        <div class="option">A) 8-bit integer (GLbyte)</div>
+                        <div class="option">B) 32-bit integer (GLint)</div>
+                        <div class="option">C) 32-bit floating-point (GLfloat)</div>
+                        <div class="option">D) 64-bit floating-point (GLdouble)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 91</div>
+                    <div class="question-text">What does the "d" suffix in an OpenGL function like `glVertex2d` stand for?</div>
+                    <div class="options">
+                        <div class="option">A) 32-bit integer (GLint)</div>
+                        <div class="option">B) 32-bit float (GLfloat)</div>
+                        <div class="option">C) 64-bit floating-point (GLdouble)</div>
+                        <div class="option">D) 16-bit integer (GLshort)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 92</div>
+                    <div class="question-text">What does the "i" suffix in an OpenGL function like `glVertex2i` stand for?</div>
+                    <div class="options">
+                        <div class="option">A) 8-bit integer (GLbyte)</div>
+                        <div class="option">B) 32-bit integer (GLint)</div>
+                        <div class="option">C) 32-bit float (GLfloat)</div>
+                        <div class="option">D) 8-bit unsigned integer (GLubyte)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 93</div>
+                    <div class="question-text">What does the "ub" suffix in an OpenGL function like `glColor3ub` stand for?</div>
+                    <div class="options">
+                        <div class="option">A) 8-bit unsigned integer (GLubyte)</div>
+                        <div class="option">B) 16-bit unsigned integer (GLushort)</div>
+                        <div class="option">C) 32-bit unsigned integer (GLuint)</div>
+                        <div class="option">D) 8-bit integer (GLbyte)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 94</div>
+                    <div class="question-text">What does the 'v' suffix in `glVertex3dv` mean?</div>
+                    <div class="options">
+                        <div class="option">A) The function takes a single value</div>
+                        <div class="option">B) The function takes a pointer to an array (vector)</div>
+                        <div class="option">C) The function is for vector displays only</div>
+                        <div class="option">D) The function is for 3D viewing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 95</div>
+                    <div class="question-text">Why does OpenGL use types like `GLfloat` instead of standard C `float`?</div>
+                    <div class="options">
+                        <div class="option">A) They are faster</div>
+                        <div class="option">B) To ensure C/C++ datatypes have consistent sizes across operating systems</div>
+                        <div class="option">C) They are required by the graphics card</div>
+                        <div class="option">D) They use less memory</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 96</div>
+                    <div class="question-text">Which of the following is NOT listed as a graphics library primitive?</div>
+                    <div class="options">
+                        <div class="option">A) lines, circles, ellipses</div>
+                        <div class="option">B) polygons, filling, clipping</div>
+                        <div class="option">C) shaders, buffers, textures</div>
+                        <div class="option">D) (Both A and B are listed)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 97</div>
+                    <div class="question-text">Which of the following is listed as a graphics library attribute?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Line style</div>
+                        <div class="option">C) Material properties for 3D</div>
+                        <div class="option">D) All of the above</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 98</div>
+                    <div class="question-text">Which header file automatically includes `gl.h` and `glu.h`?</div>
+                    <div class="options">
+                        <div class="option">A) `<windows.h>`</div>
+                        <div class="option">B) `<GL/glut.h>`</div>
+                        <div class="option">C) `<GL/gl.h>`</div>
+                        <div class="option">D) `<GL/glu.h>`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 99</div>
+                    <div class="question-text">`GL_POLYGON` and `GL_COLOR_BUFFER_BIT` are examples of:</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL functions</div>
+                        <div class="option">B) OpenGL data types</div>
+                        <div class="option">C) OpenGL #defined constants</div>
+                        <div class="option">D) OpenGL attributes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 100</div>
+                    <div class="question-text">`GLfloat` and `GLdouble` are examples of:</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL functions</div>
+                        <div class="option">B) OpenGL-defined data types</div>
+                        <div class="option">C) OpenGL constants</div>
+                        <div class="option">D) OpenGL attributes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="section-title">🎨 Chapter 2: OpenGL Basics and Drawing</div>
+                
+                <div class="question">
+                    <div class="question-number">Question 101</div>
+                    <div class="question-text">What are the basic elements of pictures, such as dots, lines, and polygons, called?</div>
+                    <div class="options">
+                        <div class="option">A) Computer Graphics Primitives</div>
+                        <div class="option">B) Attributes</div>
+                        <div class="option">C) OpenGL States</div>
+                        <div class="option">D) Raster Images</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 102</div>
+                    <div class="question-text">What defines 'how an output primitive appears' (e.g., its color and thickness)?</div>
+                    <div class="options">
+                        <div class="option">A) Primitives</div>
+                        <div class="option">B) Attributes</div>
+                        <div class="option">C) Polygons</div>
+                        <div class="option">D) Filled regions</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 103</div>
+                    <div class="question-text">Which OpenGL primitive type is used to draw a single dot?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_DOT`</div>
+                        <div class="option">B) `GL_POINT`</div>
+                        <div class="option">C) `GL_POINTS`</div>
+                        <div class="option">D) `GL_PIXEL`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 104</div>
+                    <div class="question-text">Which OpenGL primitive draws separate, disconnected line segments between pairs of vertices (v0-v1, v2-v3, v4-v5)?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINES`</div>
+                        <div class="option">B) `GL_LINE_STRIP`</div>
+                        <div class="option">C) `GL_LINE_LOOP`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 105</div>
+                    <div class="question-text">Which OpenGL primitive draws a connected series of lines (v0-v1, v1-v2, v2-v3)?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINES`</div>
+                        <div class="option">B) `GL_LINE_STRIP`</div>
+                        <div class="option">C) `GL_LINE_LOOP`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 106</div>
+                    <div class="question-text">Which OpenGL primitive draws a connected series of lines and also connects the last vertex back to the first?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINES`</div>
+                        <div class="option">B) `GL_LINE_STRIP`</div>
+                        <div class="option">C) `GL_LINE_LOOP`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 107</div>
+                    <div class="question-text">Which primitive type draws separate, filled triangles for every 3 vertices (v0,v1,v2), (v3,v4,v5), etc.?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_TRIANGLES`</div>
+                        <div class="option">B) `GL_TRIANGLE_STRIP`</div>
+                        <div class="option">C) `GL_TRIANGLE_FAN`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 108</div>
+                    <div class="question-text">Which primitive draws a series of triangles like (v0,v1,v2), then (v1,v2,v3), then (v2,v3,v4)?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_TRIANGLES`</div>
+                        <div class="option">B) `GL_TRIANGLE_STRIP`</div>
+                        <div class="option">C) `GL_TRIANGLE_FAN`</div>
+                        <div class="option">D) `GL_QUAD_STRIP`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 109</div>
+                    <div class="question-text">Which primitive draws triangles that all share the first vertex, like (v0,v1,v2), then (v0,v2,v3), then (v0,v3,v4)?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_TRIANGLES`</div>
+                        <div class="option">B) `GL_TRIANGLE_STRIP`</div>
+                        <div class="option">C) `GL_TRIANGLE_FAN`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 110</div>
+                    <div class="question-text">Which primitive takes vertices four at a time to draw separate quadrilaterals?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_POLYGON`</div>
+                        <div class="option">B) `GL_QUADS`</div>
+                        <div class="option">C) `GL_QUAD_STRIP`</div>
+                        <div class="option">D) `GL_TRIANGLES`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 111</div>
+                    <div class="question-text">Which primitive draws a series of quadrilaterals like (v0, v1, v3, v2), then (v2, v3, v5, v4), etc.?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_POLYGON`</div>
+                        <div class="option">B) `GL_QUADS`</div>
+                        <div class="option">C) `GL_QUAD_STRIP`</div>
+                        <div class="option">D) `GL_TRIANGLE_STRIP`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 112</div>
+                    <div class="question-text">What are attributes, which determine the appearance of objects, part of?</div>
+                    <div class="options">
+                        <div class="option">A) The OpenGL state</div>
+                        <div class="option">B) The primitive itself</div>
+                        <div class="option">C) The vertex data</div>
+                        <div class="option">D) The frame buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 113</div>
+                    <div class="question-text">Which of the following is NOT listed as an attribute in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Size and width</div>
+                        <div class="option">C) Stipple pattern</div>
+                        <div class="option">D) Vertex position</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 114</div>
+                    <div class="question-text">What is a 'polyline'?</div>
+                    <div class="options">
+                        <div class="option">A) A filled polygon</div>
+                        <div class="option">B) A collection of line segments joined end to end</div>
+                        <div class="option">C) A single straight line</div>
+                        <div class="option">D) A curved line</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 115</div>
+                    <div class="question-text">Which of the following is listed as a text attribute?</div>
+                    <div class="options">
+                        <div class="option">A) Font, color, size</div>
+                        <div class="option">B) Spacing, orientation</div>
+                        <div class="option">C) Both A and B</div>
+                        <div class="option">D) Neither A nor B</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 116</div>
+                    <div class="question-text">What is a 'filled-region' primitive?</div>
+                    <div class="options">
+                        <div class="option">A) A shape filled with some color or pattern</div>
+                        <div class="option">B) A line with a thick attribute</div>
+                        <div class="option">C) A text character</div>
+                        <div class="option">D) A wireframe model</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 117</div>
+                    <div class="question-text">How are colors specified in OpenGL, according to the slides?</div>
+                    <div class="options">
+                        <div class="option">A) Using a mixture of Red, Green, and Blue (RGB)</div>
+                        <div class="option">B) Using Cyan, Magenta, Yellow, and Black (CMYK)</div>
+                        <div class="option">C) Using Hue, Saturation, and Value (HSV)</div>
+                        <div class="option">D) Using a color index number only</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 118</div>
+                    <div class="question-text">In `glColor3f`, what is the float value for 'all of this color'?</div>
+                    <div class="options">
+                        <div class="option">A) 0.0</div>
+                        <div class="option">B) 1.0</div>
+                        <div class="option">C) 255.0</div>
+                        <div class="option">D) -1.0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 119</div>
+                    <div class="question-text">In `glColor3f`, what is the float value for 'none of this color'?</div>
+                    <div class="options">
+                        <div class="option">A) 0.0</div>
+                        <div class="option">B) 1.0</div>
+                        <div class="option">C) 0.5</div>
+                        <div class="option">D) -1.0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 120</div>
+                    <div class="question-text">What is the RGB value for White using `glColor3f`?</div>
+                    <div class="options">
+                        <div class="option">A) (0.0, 0.0, 0.0)</div>
+                        <div class="option">B) (1.0, 1.0, 1.0)</div>
+                        <div class="option">C) (1.0, 0.0, 0.0)</div>
+                        <div class="option">D) (0.5, 0.5, 0.5)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 121</div>
+                    <div class="question-text">What is the RGB value for Black using `glColor3f`?</div>
+                    <div class="options">
+                        <div class="option">A) (0.0, 0.0, 0.0)</div>
+                        <div class="option">B) (1.0, 1.0, 1.0)</div>
+                        <div class="option">C) (1.0, 1.0, 0.0)</div>
+                        <div class="option">D) (0.5, 0.5, 0.5)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 122</div>
+                    <div class="question-text">Which function is used to set the background (clear) color in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f()`</div>
+                        <div class="option">B) `glClear()`</div>
+                        <div class="option">C) `glClearColor()`</div>
+                        <div class="option">D) `glSetBackground()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 123</div>
+                    <div class="question-text">Which function is used to set the foreground (drawing) color in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) `glColor3f()` or `glColor4f()`</div>
+                        <div class="option">B) `glClearColor()`</div>
+                        <div class="option">C) `glSetForeground()`</div>
+                        <div class="option">D) `glDrawColor()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 124</div>
+                    <div class="question-text">What is OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) A hardware component</div>
+                        <div class="option">B) An operating system</div>
+                        <div class="option">C) A software interface to graphics hardware</div>
+                        <div class="option">D) A 3D modeling program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 125</div>
+                    <div class="question-text">OpenGL is designed as a ______-independent interface.</div>
+                    <div class="options">
+                        <div class="option">A) hardware</div>
+                        <div class="option">B) software</div>
+                        <div class="option">C) Windows</div>
+                        <div class="option">D) resolution</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+            </div>
+            
+            </div>
+
+        <div class="footer">
+            <p>Computer Graphics Midterm MCQ Bank - Complete Coverage of All 3 Chapters | 500+ Questions | <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib</p>
+        </div>
+    </div>
+</body>
+</html>

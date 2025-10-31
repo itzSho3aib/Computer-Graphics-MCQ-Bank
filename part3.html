@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Graphics Midterm MCQ - Part 3</title>
+    <style>
+        /* ... (Your existing CSS code) ... */
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #e9ecef;
+            color: #000;
+        }
+        
+        .nav-link.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .developer-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* Estimate button width to be around 300px */
+            width: 290px; 
+            justify-content: center;
+        }
+        
+        .developer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .icon-code {
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        /* Wrapper for header text to prevent overlap */
+        .header-text {
+            /* Add padding to the right to avoid the button */
+            /* Button width (290px) + position (20px) + extra space (20px) = 330px */
+            padding-right: 330px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-box .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .question {
+            background: #ffffff;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .correct-answer {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .question {
+                page-break-inside: avoid;
+            }
+            
+            .developer-button {
+                display: none;
+            }
+        }
+
+        /* On screens 900px or less, the button might still overlap */
+        @media (max-width: 900px) {
+             .header-text {
+                padding-right: 0; /* Remove padding */
+                margin-top: 60px; /* Add margin to top to avoid button */
+            }
+            .developer-button {
+                /* Center the button on smaller desktop/tablet */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 290px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .developer-button {
+                position: static;
+                transform: none; /* Reset transform */
+                display: inline-flex;
+                margin-top: 15px;
+                width: auto; /* Reset width */
+            }
+            .header-text {
+                padding-right: 0;
+                margin-top: 0; /* Reset margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="https://itzsho3aib.github.io/shoaibs.portfolio/" class="developer-button" target="_blank">
+                <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib
+            </a>
+            <div class="header-text">
+                <h1>🎓 Computer Graphics Midterm MCQ (Part 3 of 4)</h1>
+                <p>Question Bank - Questions 251-375 | Chapters 2 & 3</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">125</div>
+                <div class="label">Questions in this part</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">2</div>
+                <div class="label">Chapters Covered</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">500+</div>
+                <div class="label">Total Questions</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="part1.html" class="nav-link">Part 1</a>
+            <a href="part2.html" class="nav-link">Part 2</a>
+            <a href="part3.html" class="nav-link">Part 3</a>
+            <a href="part4.html" class="nav-link">Part 4</a>
+        </div>
+        <div class="content">
+            
+            <div class="section">
+                <div class="section-title">🖼️ Chapter 3: Windows, Viewports and Clipping (Continued)</div>
+
+                <div class="question">
+                    <div class="question-number">Question 251</div>
+                    <div class="question-text">What is the purpose of the `glutReshapeFunc` callback?</div>
+                    <div class="options">
+                        <div class="option">A) To respond to mouse clicks</div>
+                        <div class="option">B) To respond to keyboard presses</div>
+                        <div class="option">C) To respond to a window resize event</div>
+                        <div class="option">D) To redraw the display</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 252</div>
+                    <div class="question-text">What is "clipping"?</div>
+                    <div class="options">
+                        <div class="option">A) The process of computing which part of a line segment lies inside the world window</div>
+                        <div class="option">B) The process of scaling a line to fit the viewport</div>
+                        <div class="option">C) The process of translating a line to the origin</div>
+                        <div class="option">D) The process of drawing a line</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 253</div>
+                    <div class="question-text">What is the name of the classic line-clipping algorithm described in the slides?</div>
+                    <div class="options">
+                        <div class="option">A) B-spline clipping</div>
+                        <div class="option">B) Cohen-Sutherland clipper</div>
+                        <div class="option">C) OpenGL clipping</div>
+                        <div class="option">D) Viewport mapping algorithm</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 254</div>
+                    <div class="question-text">What does the Cohen-Sutherland clipper compute?</div>
+                    <div class="options">
+                        <div class="option">A) The color of the line</div>
+                        <div class="option">B) The length of the line</div>
+                        <div class="option">C) Which part (if any) of a line segment lies inside the world window</div>
+                        <div class="option">D) The aspect ratio of the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 255</div>
+                    <div class="question-text">In the Cohen-Sutherland algorithm, what 4-bit "code" is assigned to a point?</div>
+                    <div class="options">
+                        <div class="option">A) A 4-bit color code</div>
+                        <div class="option">B) A 4-bit region code (Left-Above-Right-Below)</div>
+                        <div class="option">C) A 4-bit scaling factor</div>
+                        <div class="option">D) A 4-bit translation vector</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 256</div>
+                    <div class="question-text">What does the 4-bit code for a point represent?</div>
+                    <div class="options">
+                        <div class="option">A) Whether the point is to the Left, Above, Right, or Below the window</div>
+                        <div class="option">B) The point's (x, y) coordinates</div>
+                        <div class="option">C) The line's slope</div>
+                        <div class="option">D) The line's color</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 257</div>
+                    <div class="question-text">What is the 4-bit code for a point that is *inside* the window?</div>
+                    <div class="options">
+                        <div class="option">A) TTTT (1111)</div>
+                        <div class="option">B) FFFF (0000)</div>
+                        <div class="option">C) TFTF (1010)</div>
+                        <div class="option">D) FTFT (0101)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 258</div>
+                    <div class="question-text">What does the first bit (Left) of the 4-bit code signify if it is 'T' (True)?</div>
+                    <div class="options">
+                        <div class="option">A) The point is to the right of the window</div>
+                        <div class="option">B) The point is to the left of the window</div>
+                        <div class="option">C) The point is inside the window</div>
+                        <div class="option">D) The point is above the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 259</div>
+                    <div class="question-text">What does the second bit (Above) of the 4-bit code signify if it is 'T' (True)?</div>
+                    <div class="options">
+                        <div class="option">A) The point is below the window</div>
+                        <div class="option">B) The point is to the left of the window</div>
+                        <div class="option">C) The point is above the window</div>
+                        <div class="option">D) The point is inside the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 260</div>
+                    <div class="question-text">What does the third bit (Right) of the 4-bit code signify if it is 'T' (True)?</div>
+                    <div class="options">
+                        <div class="option">A) The point is to the right of the window</div>
+                        <div class="option">B) The point is to the left of the window</div>
+                        <div class="option">C) The point is below the window</div>
+                        <div class="option">D) The point is inside the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 261</div>
+                    <div class="question-text">What does the fourth bit (Below) of the 4-bit code signify if it is 'T' (True)?</div>
+                    <div class="options">
+                        <div class="option">A) The point is above the window</div>
+                        <div class="option">B) The point is to the right of the window</div>
+                        <div class="option">C) The point is below the window</div>
+                        <div class="option">D) The point is inside the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 262</div>
+                    <div class="question-text">What is a "Trivial Accept" in the Cohen-Sutherland algorithm?</div>
+                    <div class="options">
+                        <div class="option">A) When the entire line lies outside the window</div>
+                        <div class="option">B) When the entire line lies within the window</div>
+                        <div class="option">C) When one endpoint is inside and one is outside</div>
+                        <div class="option">D) When both endpoints are outside but the line crosses the window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 263</div>
+                    <div class="question-text">How is a "Trivial Accept" detected using the 4-bit codes of the two endpoints (code1, code2)?</div>
+                    <div class="options">
+                        <div class="option">A) Both code words are FFFF (0000)</div>
+                        <div class="option">B) Both code words are TTTT (1111)</div>
+                        <div class="option">C) `Code1 AND Code2` is not zero</div>
+                        <div class="option">D) `Code1 OR Code2` is zero</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 264</div>
+                    <div class="question-text">What is a "Trivial Reject" in the Cohen-Sutherland algorithm?</div>
+                    <div class="options">
+                        <div class="option">A) When the entire line lies outside the window</div>
+                        <div class="option">B) When the entire line lies within the window</div>
+                        <div class="option">C) When one endpoint is inside and one is outside</div>
+                        <div class="option">D) When the line is vertical</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 265</div>
+                    <div class="question-text">How is a "Trivial Reject" detected using the 4-bit codes of the two endpoints?</div>
+                    <div class="options">
+                        <div class="option">A) The code words have a 'T' in the same position (e.g., both are to the left)</div>
+                        <div class="option">B) Both code words are FFFF (0000)</div>
+                        <div class="option">C) The code words are different</div>
+                        <div class="option">D) `Code1 AND Code2` is zero</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 266</div>
+                    <div class="question-text">What logical operation is used to test for a "Trivial Reject"?</div>
+                    <div class="options">
+                        <div class="option">A) `Code1 OR Code2`</div>
+                        <div class="option">B) `Code1 XOR Code2`</div>
+                        <div class="option">C) `Code1 AND Code2`</div>
+                        <div class="option">D) `NOT (Code1 OR Code2)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 267</div>
+                    <div class="question-text">If `(Code1 AND Code2) != 0`, what does this imply?</div>
+                    <div class="options">
+                        <div class="option">A) The line must be totally outside the window (Trivial Reject)</div>
+                        <div class="option">B) The line must be totally inside the window (Trivial Accept)</div>
+                        <div class="option">C) The line must be clipped</div>
+                        <div class="option">D) The test is inconclusive</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 268</div>
+                    <div class="question-text">If a line can be neither trivially accepted nor rejected, what strategy does the Cohen-Sutherland algorithm use?</div>
+                    <div class="options">
+                        <div class="option">A) It discards the line</div>
+                        <div class="option">B) It draws the entire line</div>
+                        <div class="option">C) A "divide-and-conquer" strategy</div>
+                        <div class="option">D) A "brute-force" strategy</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 269</div>
+                    <div class="question-text">What happens to the part of the line that is found to be outside the window during clipping?</div>
+                    <div class="options">
+                        <div class="option">A) It is drawn in a different color</div>
+                        <div class="option">B) It is discarded</div>
+                        <div class="option">C) It is scaled to fit</div>
+                        <div class="option">D) It is processed again</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 270</div>
+                    <div class="question-text">After clipping a segment against one boundary, what is the next step?</div>
+                    <div class="options">
+                        <div class="option">A) The algorithm terminates</div>
+                        <div class="option">B) The entire process is repeated for the new, shorter segment</div>
+                        <div class="option">C) The line is trivially accepted</div>
+                        <div class="option">D) The line is trivially rejected</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 271</div>
+                    <div class="question-text">According to the algorithm flowchart, what is step 3 if there is no trivial accept or reject?</div>
+                    <div class="options">
+                        <div class="option">A) Find the intersection point</div>
+                        <div class="option">B) Choose an endpoint of the line that is outside</div>
+                        <div class="option">C) Replace the endpoint with the intersection</div>
+                        <div class="option">D) Return 1</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 272</div>
+                    <div class="question-text">What is step 4 in the clipping algorithm (after choosing an outside endpoint)?</div>
+                    <div class="options">
+                        <div class="option">A) Find the intersection point of the rectangular boundary</div>
+                        <div class="option">B) Update the region code</div>
+                        <div class="option">C) Return 0</div>
+                        <div class="option">D) Form the code words for p1 and p2</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 273</div>
+                    <div class="question-text">What is step 5 in the clipping algorithm (after finding the intersection point)?</div>
+                    <div class="options">
+                        <div class="option">A) Return 1</div>
+                        <div class="option">B) Choose an outside endpoint</div>
+                        <div class="option">C) Replace the endpoint with the intersection point and update the region code</div>
+                        <div class="option">D) Perform a trivial accept test</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 274</div>
+                    <div class="question-text">After at most how many iterations is trivial acceptance or rejection assured?</div>
+                    <div class="options">
+                        <div class="option">A) 1</div>
+                        <div class="option">B) 2</div>
+                        <div class="option">C) 4</div>
+                        <div class="option">D) It is not assured and could loop forever</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+            <div class="section-title">🎨 Chapter 2: OpenGL Basics and Drawing (Continued)</div>
+
+                <div class="question">
+                    <div class="question-number">Question 275</div>
+                    <div class="question-text">What is a 'filled-region' primitive?</div>
+                    <div class="options">
+                        <div class="option">A) A shape filled with some color or pattern</div>
+                        <div class="option">B) A line with a thick attribute</div>
+                        <div class="option">C) A text character</div>
+                        <div class="option">D) A wireframe model</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 276</div>
+                    <div class="question-text">What is the boundary of a filled region often?</div>
+                    <div class="options">
+                        <div class="option">A) A circle</div>
+                        <div class="option">B) A polygon</div>
+                        <div class="option">C) A single point</div>
+                        <div class="option">D) A set of pixels</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 277</div>
+                    <div class="question-text">How are colors specified in OpenGL?</div>
+                    <div class="options">
+                        <div class="option">A) Using a mixture of Red, Green, and Blue (RGB)</div>
+                        <div class="option">B) Using Cyan, Magenta, Yellow, and Black (CMYK)</div>
+                        <div class="option">C) Using Hue, Saturation, and Value (HSV)</div>
+                        <div class="option">D) Using a color index number only</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 278</div>
+                    <div class="question-text">What is the range for float values specifying color amounts in `glColor3f`?</div>
+                    <div class="options">
+                        <div class="option">A) 0 to 255</div>
+                        <div class="option">B) 0 to 1</div>
+                        <div class="option">C) -1 to 1</div>
+                        <div class="option">D) 0 to 100</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 279</div>
+                    <div class="question-text">What does the alpha value (`α`) in `glClearColor(R, G, B, α)` control?</div>
+                    <div class="options">
+                        <div class="option">A) The red component</div>
+                        <div class="option">B) The blue component</div>
+                        <div class="option">C) The opacity/transparency</div>
+                        <div class="option">D) The brightness</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 280</div>
+                    <div class="question-text">What does the alpha value (`α`) in `glColor4f(R, G, B, α)` control?</div>
+                    <div class="options">
+                        <div class="option">A) The red component</div>
+                        <div class="option">B) The blue component</div>
+                        <div class="option">C) The opacity/transparency</div>
+                        <div class="option">D) The green component</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 281</div>
+                    <div class="question-text">What is the full name for GLU?</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL Utility Library</div>
+                        <div class="option">B) OpenGL User Library</div>
+                        <div class="option">C) Open Graphics Utility Library</div>
+                        <div class="option">D) Open Graphics User Library</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 282</div>
+                    <div class="question-text">What is GLU used for?</div>
+                    <div class="options">
+                        <div class="option">A) Core primitive rendering</div>
+                        <div class="option">B) Higher-level routines like polygon tessellation</div>
+                        <div class="option">C) Window system management</div>
+                        <div class="option">D) Handling keyboard and mouse input</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 283</div>
+                    <div class="question-text">What is the full name for GLUT?</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL Utility Toolkit</div>
+                        <div class="option">B) OpenGL User Toolkit</div>
+                        <div class="option">C) Open Graphics Utility Toolkit</div>
+                        <div class="option">D) Open Graphics User Toolkit</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 284</div>
+                    <div class="question-text">What is GLUT used for?</div>
+                    <div class="options">
+                        <div class="option">A) Core primitive rendering</div>
+                        <div class="option">B) Polygon tessellation</div>
+                        <div class="option">C) A window-system-independent high-level library</div>
+                        <div class="option">D) Setting up projection matrices</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 285</div>
+                    <div class="question-text">What command prefix do all functions in GLUT have?</div>
+                    <div class="options">
+                        <div class="option">A) `gl`</div>
+                        <div class="option">B) `glu`</div>
+                        <div class="option">C) `glut`</div>
+                        <div class="option">D) `win`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 286</div>
+                    <div class="question-text">What is the purpose of `glutInit(int *argc, char **argv)`?</div>
+                    <div class="options">
+                        <div class="option">A) To create a window</div>
+                        <div class="option">B) To initialize the toolkit</div>
+                        <div class="option">C) To set the display mode</div>
+                        <div class="option">D) To enter the main event loop</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 287</div>
+                    <div class="question-text">What does `glutInitWindowPosition(int x, int y)` establish?</div>
+                    <div class="options">
+                        <div class="option">A) The window's size</div>
+                        <div class="option">B) The window's title</div>
+                        <div class="option">C) The window's top left corner</div>
+                        <div class="option">D) The window's display mode</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 288</div>
+                    <div class="question-text">The `y` parameter in `glutInitWindowPosition(int x, int y)` is the number of pixels from the...</div>
+                    <div class="options">
+                        <div class="option">A) top of the screen</div>
+                        <div class="option">B) bottom of the screen</div>
+                        <div class="option">C) left of the screen</div>
+                        <div class="option">D) center of the screen</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 289</div>
+                    <div class="question-text">Are the values for `glutInitWindowSize(int width, int height)` a strict rule or a suggestion?</div>
+                    <div class="options">
+                        <div class="option">A) A suggestion</div>
+                        <div class="option">B) A strict rule</div>
+                        <div class="option">C) Only a rule on Windows</div>
+                        <div class="option">D) Only a rule on Linux</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 290</div>
+                    <div class="question-text">What does `GLUT_INDEX` select in `glutInitDisplayMode`?</div>
+                    <div class="options">
+                        <div class="option">A) A color index mode</div>
+                        <div class="option">B) An RGBA color mode</div>
+                        <div class="option">C) A double buffer</div>
+                        <div class="option">D) A single buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 291</div>
+                    <div class="question-text">In the "simple.c" example, what primitive is used to draw the square?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_QUADS`</div>
+                        <div class="option">B) `GL_SQUARE`</div>
+                        <div class="option">C) `GL_POLYGON`</div>
+                        <div class="option">D) `GL_LINE_LOOP`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 292</div>
+                    <div class="question-text">What does `glLoadIdentity()` do?</div>
+                    <div class="options">
+                        <div class="option">A) Clears the screen</div>
+                        <div class="option">B) Replaces the current matrix with the identity matrix</div>
+                        <div class="option">C) Loads a 3D model</div>
+                        <div class="option">D) Sets the drawing color to white</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 293</div>
+                    <div class="question-text">What does `glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)` define?</div>
+                    <div class="options">
+                        <div class="option">A) The default viewing volume (a box centered at origin with side length 2)</div>
+                        <div class="option">B) A 2D window from (0,0) to (-1, -1)</div>
+                        <div class="option">C) A viewport on the screen</div>
+                        <div class="option">D) A perspective projection</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 294</div>
+                    <div class="question-text">When vertices are passed to OpenGL, what are they first transformed by?</div>
+                    <div class="options">
+                        <div class="option">A) The window-to-viewport mapping</div>
+                        <div class="option">B) The CT (Current Transformation) matrix</div>
+                        <div class="option">C) The Video Controller</div>
+                        <div class="option">D) The Display Controller</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 295</div>
+                    <div class="question-text">After being transformed by the CT matrix, what mapping is a vertex passed through?</div>
+                    <div class="options">
+                        <div class="option">A) The window-to-viewport mapping</div>
+                        <div class="option">B) The display list</div>
+                        <div class="option">C) The color look-up table</div>
+                        <div class="option">D) The z-buffer</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 296</div>
+                    <div class="question-text">In the default orthographic view, a point (x, y, z) is projected to what point on the z=0 plane?</div>
+                    <div class="options">
+                        <div class="option">A) (x, y, 0)</div>
+                        <div class="option">B) (0, 0, z)</div>
+                        <div class="option">C) (x, 0, z)</div>
+                        <div class="option">D) (0, y, z)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 297</div>
+                    <div class="question-text">If an application is in 2D, what function can be used as an alternative to `glOrtho`?</div>
+                    <div class="options">
+                        <div class="option">A) `gluOrtho2D()`</div>
+                        <div class="option">B) `glViewport()`</div>
+                        <div class="option">C) `gluPerspective()`</div>
+                        <div class="option">D) `glVertex2f()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 298</div>
+                    <div class="question-text">In `glOrtho(left, right, bottom, top, near, far)`, how are the `near` and `far` distances measured?</div>
+                    <div class="options">
+                        <div class="option">A) From the origin (0,0,0)</div>
+                        <div class="option">B) From the camera</div>
+                        <div class="option">C) From the `z=0` plane</div>
+                        <div class="option">D) From each other</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 299</div>
+                    <div class="question-text">When using 2D vertex commands like `glVertex2f(x, y)`, what z-coordinate is assumed?</div>
+                    <div class="options">
+                        <div class="option">A) z = 0</div>
+                        <div class="option">B) z = 1</div>
+                        <div class="option">C) z = -1</div>
+                        <div class="option">D) z is undefined</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 300</div>
+                    <div class="question-text">What does `glMatrixMode(GL_PROJECTION)` specify?</div>
+                    <div class="options">
+                        <div class="option">A) That subsequent transformations will affect the projection matrix</div>
+                        <div class="option">B) That subsequent transformations will affect the modelview matrix</div>
+                        <div class="option">C) That the system is in 2D mode</div>
+                        <div class="option">D) That the system should use a perspective projection</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 301</div>
+                    <div class="question-text">What C-language type typically corresponds to the OpenGL type `GLint`?</div>
+                    <div class="options">
+                        <div class="option">A) `float`</div>
+                        <div class="option">B) `double`</div>
+                        <div class="option">C) `int` or `long`</div>
+                        <div class="option">D) `short`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 302</div>
+                    <div class="question-text">What C-language type typically corresponds to the OpenGL type `GLfloat`?</div>
+                    <div class="options">
+                        <div class="option">A) `float`</div>
+                        <div class="option">B) `double`</div>
+                        <div class="option">C) `int`</div>
+                        <div class="option">D) `signed char`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 303</div>
+                    <div class="question-text">What C-language type typically corresponds to the OpenGL type `GLdouble`?</div>
+                    <div class="options">
+                        <div class="option">A) `float`</div>
+                        <div class="option">B) `double`</div>
+                        <div class="option">C) `long`</div>
+                        <div class="option">D) `unsigned short`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 304</div>
+                    <div class="question-text">What C-language type typically corresponds to the OpenGL type `GLbyte`?</div>
+                    <div class="options">
+                        <div class="option">A) `short`</div>
+                        <div class="option">B) `int`</div>
+                        <div class="option">C) `signed char`</div>
+                        <div class="option">D) `unsigned char`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 305</div>
+                    <div class="question-text">What C-language type typically corresponds to the OpenGL type `GLubyte`?</div>
+                    <div class="options">
+                        <div class="option">A) `short`</div>
+                        <div class="option">B) `signed char`</div>
+                        <div class="option">C) `unsigned char`</div>
+                        <div class="option">D) `unsigned long`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 306</div>
+                    <div class="question-text">Is `void drawDot(int x, int y)` with `glVertex2i(x,y)` considered safe programming according to the slides?</div>
+                    <div class="options">
+                        <div class="option">A) Yes, it is the preferred method</div>
+                        <div class="option">B) No, it is described as "Danger"</div>
+                        <div class="option">C) It is safe, but `GLfloat` is better</div>
+                        <div class="option">D) It only works on Windows</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 307</div>
+                    <div class="question-text">Why is using `GLint` preferred over `int` for OpenGL function parameters?</div>
+                    <div class="options">
+                        <div class="option">A) `GLint` is faster</div>
+                        <div class="option">B) `GLint` is guaranteed to be a 32-bit integer, while `int` sizes can vary</div>
+                        <div class="option">C) `GLint` can store floating-point numbers</div>
+                        <div class="option">D) `int` is not a valid C++ type</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 308</div>
+                    <div class="question-text">What C++ class is defined in Example 3 (Sierpinski) to hold a 2D integer point?</div>
+                    <div class="options">
+                        <div class="option">A) `GLPoint`</div>
+                        <div class="option">B) `Point2D`</div>
+                        <div class="option">C) `GLintPoint`</div>
+                        <div class="option">D) `Vertex`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 309</div>
+                    <div class="question-text">In the Sierpinski gasket example, how is the next `point` calculated?</div>
+                    <div class="options">
+                        <div class="option">A) It is the midpoint between the current point and a randomly chosen vertex `T[index]`</div>
+                        <div class="option">B) It is a random point inside the triangle</div>
+                        <div class="option">C) It is the current point plus a random offset</div>
+                        <div class="option">D) It is one of the three `T` vertices, chosen at random</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 310</div>
+                    <div class="question-text">In the Sierpinski example, how many dots are drawn in the `for` loop?</div>
+                    <div class="options">
+                        <div class="option">A) 3</div>
+                        <div class="option">B) 100</div>
+                        <div class="option">C) 1000</div>
+                        <div class="option">D) 640</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 311</div>
+                    <div class="question-text">When plotting a function like `e^-x * cos(2*pi*x)`, why might it appear tiny in a 640x480 window?</div>
+                    <div class="options">
+                        <div class="option">A) The data values (e.g., x from 0-4) are much smaller than the window coordinates (0-640)</div>
+                        <div class="option">B) The function is incorrect</div>
+                        <div class="option">C) The line width is too small</div>
+                        <div class="option">D) The color is set to black</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 312</div>
+                    <div class="question-text">To map a data range `xmin` to `xmax` to a screen width `SCREENWIDTH` (starting from 0), what is the scaling factor `A`?</div>
+                    <div class="options">
+                        <div class="option">A) `A = SCREENWIDTH / (xmax - xmin)`</div>
+                        <div class="option">B) `A = xmax / SCREENWIDTH`</div>
+                        <div class="option">C) `A = SCREENWIDTH / xmax` (only if xmin=0)</div>
+                        <div class="option">D) `A = xmax - xmin`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 313</div>
+                    <div class="question-text">What is the formula for the scaling factor `C` for the y-axis, given `ymin` and `ymax`?</div>
+                    <div class="options">
+                        <div class="option">A) `C = ymax / SCREENHEIGHT`</div>
+                        <div class="option">B) `C = SCREENHEIGHT / (ymax - ymin)`</div>
+                        <div class="option">C) `C = (ymax - ymin) / SCREENHEIGHT`</div>
+                        <div class="option">D) `C = SCREENHEIGHT / ymin`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 314</div>
+                    <div class="question-text">What C function from `<math.h>` calculates the absolute value of a floating-point argument?</div>
+                    <div class="options">
+                        <div class="option">A) `abs()`</div>
+                        <div class="option">B) `fabs()`</div>
+                        <div class="option">C) `absolute()`</div>
+                        <div class="option">D) `labs()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 315</div>
+                    <div class="question-text">In Example 4 (dot plot of function), what is the function `y` being calculated from `x`?</div>
+                    <div class="options">
+                        <div class="option">A) `y = exp(-x) * cos(2*pi*x)`</div>
+                        <div class="option">B) `y = sin(x) / x`</div>
+                        <div class="option">C) `y = exp(x) * sin(2*pi*x)`</div>
+                        <div class="option">D) `y = A*x + B`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 316</div>
+                    <div class="question-text">In Example 4, what is the final `glVertex2d` call using the scaling and translation constants?</div>
+                    <div class="options">
+                        <div class="option">A) `glVertex2d(x, y)`</div>
+                        <div class="option">B) `glVertex2d(A*x, C*y)`</div>
+                        <div class="option">C) `glVertex2d(A*x + B, C*y + D)`</div>
+                        <div class="option">D) `glVertex2d(x/A + B, y/C + D)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 317</div>
+                    <div class="question-text">How do you draw a single line segment with endpoints (x1, y1) and (x2, y2)?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_LINES); glVertex2i(x1,y1); glVertex2i(x2,y2); glEnd();`</div>
+                        <div class="option">B) `glBegin(GL_LINE_STRIP); glVertex2i(x1,y1); glVertex2i(x2,y2); glEnd();`</div>
+                        <div class="option">C) `glLine(x1, y1, x2, y2);`</div>
+                        <div class="option">D) `glBegin(GL_POINTS); glVertex2i(x1,y1); glVertex2i(x2,y2); glEnd();`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 318</div>
+                    <div class="question-text">What is the "hardwired" approach to drawing (e.g., the house example)?</div>
+                    <div class="options">
+                        <div class="option">A) Storing vertices in a file and reading them</div>
+                        <div class="option">B) Using parameters to define the position and size of the house</div>
+                        <div class="option">C) Hardcoding the exact vertex coordinates directly into the drawing code</div>
+                        <div class="option">D) Using `glRecti` to draw the house</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 319</div>
+                    <div class="question-text">What is the disadvantage of the "hardwired" drawing approach?</div>
+                    <div class="options">
+                        <div class="option">A) It is too fast</div>
+                        <div class="option">B) It is not flexible; it can only draw one object in one size and location</div>
+                        <div class="option">C) It uses too much memory</div>
+                        <div class="option">D) It only works for polygons</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 320</div>
+                    <div class="question-text">What does `GL_TRIANGLE_FAN` do?</div>
+                    <div class="options">
+                        <div class="option">A) Draws a series of connected triangles sharing the first vertex (v0, v1, v2), (v0, v2, v3), ...</div>
+                        <div class="option">B) Draws separate triangles (v0, v1, v2), (v3, v4, v5), ...</div>
+                        <div class="option">C) Draws a strip of triangles (v0, v1, v2), (v1, v2, v3), ...</div>
+                        <div class="option">D) Draws a triangle with a fan texture</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 321</div>
+                    <div class="question-text">What does `GL_TRIANGLE_STRIP` do?</div>
+                    <div class="options">
+                        <div class="option">A) Draws a series of triangles sharing the first vertex (v0, v1, v2), (v0, v2, v3), ...</div>
+                        <div class="option">B) Draws separate triangles (v0, v1, v2), (v3, v4, v5), ...</div>
+                        <div class="option">C) Draws a strip of connected triangles (v0, v1, v2), (v1, v2, v3), ...</div>
+                        <div class="option">D) Draws a triangle with a strip texture</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 322</div>
+                    <div class="question-text">What does `GL_QUAD_STRIP` do?</div>
+                    <div class="options">
+                        <div class="option">A) Draws separate quadrilaterals (v0, v1, v2, v3), (v4, v5, v6, v7), ...</div>
+                        <div class="option">B) Draws a series of connected quadrilaterals (v0, v1, v3, v2), (v2, v3, v5, v4), ...</div>
+                        <div class="option">C) Draws a single quadrilateral with 4 vertices</div>
+                        <div class="option">D) Draws a quadrilateral using triangles</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 323</div>
+                    <div class="question-text">What does `glutReshapeWindow(640, 480)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Enters full-screen mode</div>
+                        <div class="option">B) Sets the initial window size</div>
+                        <div class="option">C) Changes the current window's size to 640x480</div>
+                        <div class="option">D) Sets the 2D orthographic projection</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 324</div>
+                    <div class="question-text">What does `glutFullScreen()` do?</div>
+                    <div class="options">
+                        <div class="option">A) Makes the current window cover the entire screen</div>
+                        <div class="option">B) Reshapes the window to 640x480</div>
+                        <div class="option">C) Sets the viewport to maximum size</div>
+                        <div class="option">D) Exits the program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 325</div>
+                    <div class="question-text">In the `myKeyboard` callback, how can you check if the 'f' or 'F' key was pressed?</div>
+                    <div class="options">
+                        <div class="option">A) `if (key == 'f')`</div>
+                        <div class="option">B) `if (key == 'F')`</div>
+                        <div class="option">C) `if (key == 'f' || key == 'F')`</div>
+                        <div class="option">D) `if (key == GLUT_KEY_F)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 326</div>
+                    <div class="question-text">What is the correct prototype for the `myKeyboard` callback function?</div>
+                    <div class="options">
+                        <div class="option">A) `void myKeyboard(unsigned char key, int x, int y)`</div>
+                        <div class="option">B) `void myKeyboard(int key)`</div>
+                        <div class="option">C) `void myKeyboard(int button, int state, int x, int y)`</div>
+                        <div class="option">D) `void myKeyboard(int width, int height)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 327</div>
+                    <div class="question-text">What is the correct prototype for the `myMouse` callback function?</div>
+                    <div class="options">
+                        <div class="option">A) `void myMouse(unsigned char key, int x, int y)`</div>
+                        <div class="option">B) `void myMouse(int button, int state, int x, int y)`</div>
+                        <div class="option">C) `void myMouse(int x, int y)`</div>
+                        <div class="option">D) `void myMouse(int width, int height)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 328</div>
+                    <div class="question-text">What is the correct prototype for the `myDisplay` callback function?</div>
+                    <div class="options">
+                        <div class="option">A) `void myDisplay(void)`</div>
+                        <div class="option">B) `void myDisplay(int w, int h)`</div>
+                        <div class="option">C) `void myDisplay(int key, int x, int y)`</div>
+                        <div class="option">D) `int myDisplay(void)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 329</div>
+                    <div class="question-text">What is the correct prototype for the `myReshape` callback function?</div>
+                    <div class="options">
+                        <div class="option">A) `void myReshape(void)`</div>
+                        <div class="option">B) `void myReshape(GLsizei W, GLsizei H)`</div>
+                        <div class="option">C) `void myReshape(int x, int y)`</div>
+                        <div class="option">D) `void myReshape(int button, int state)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 330</div>
+                    <div class="question-text">What is the correct prototype for the `myMovedMouse` (motion) callback function?</div>
+                    <div class="options">
+                        <div class="option">A) `void myMovedMouse(int x, int y)`</div>
+                        <div class="option">B) `void myMovedMouse(int button, int state, int x, int y)`</div>
+                        <div class="option">C) `void myMovedMouse(void)`</div>
+                        <div class="option">D) `void myMovedMouse(int dx, int dy)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 331</div>
+                    <div class="question-text">What value is passed to `exit()` to terminate the program in the keyboard example?</div>
+                    <div class="options">
+                        <div class="option">A) 0</div>
+                        <div class="option">B) -1</div>
+                        <div class="option">C) 1</div>
+                        <div class="option">D) 'E'</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 332</div>
+                    <div class="question-text">In the mouse example, how do you convert the mouse `y` coordinate (pixels from top) to OpenGL `y` coordinate (pixels from bottom)?</div>
+                    <div class="options">
+                        <div class="option">A) `screenHeight - y`</div>
+                        <div class="option">B) `y - screenHeight`</div>
+                        <div class="option">C) `y` (no change is needed)</div>
+                        <div class="option">D) `y * -1`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 333</div>
+                    <div class="question-text">How can you check if the left mouse button was *pressed* (not released)?</div>
+                    <div class="options">
+                        <div class="option">A) `if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)`</div>
+                        <div class="option">B) `if (button == GLUT_LEFT_BUTTON && state == GLUT_UP)`</div>
+                        <div class="option">C) `if (button == GLUT_LEFT_BUTTON)`</div>
+                        <div class="option">D) `if (state == GLUT_DOWN)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 334</div>
+                    <div class="question-text">How can you check if the right mouse button was *pressed*?</div>
+                    <div class="options">
+                        <div class="option">A) `if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)`</div>
+                        <div class="option">B) `if (button == GLUT_RIGHT_BUTTON)`</div>
+                        <div class="option">C) `if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)`</div>
+                        <div class="option">D) `if (state == GLUT_RIGHT_BUTTON)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 335</div>
+                    <div class="question-text">In the "draw rectangle with mouse" example, how many corners are stored before the rectangle is drawn?</div>
+                    <div class="options">
+                        <div class="option">A) 1</div>
+                        <div class="option">B) 2</div>
+                        <div class="option">C) 3</div>
+                        <div class="option">D) 4</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 336</div>
+                    <div class="question-text">In the "draw polyline with mouse" example, what does pressing the right mouse button do?</div>
+                    <div class="options">
+                        <div class="option">A) Draws the polyline</div>
+                        <div class="option">B) Adds a point to the polyline</div>
+                        <div class="option">C) Resets the list to empty</div>
+                        <div class="option">D) Exits the program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 337</div>
+                    <div class="question-text">What does the "freehand" drawing example use `glRecti` for?</div>
+                    <div class="options">
+                        <div class="option">A) To draw a single large rectangle</div>
+                        <div class="option">B) To create a "fat brush" by drawing a small square at each mouse position</div>
+                        <div class="option">C) To draw the window outline</div>
+                        <div class="option">D) To clear the screen</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 338</div>
+                    <div class="question-text">What is a `GL_QUAD_STRIP`?</div>
+                    <div class="options">
+                        <div class="option">A) A primitive that draws a series of connected quadrilaterals</div>
+                        <div class="option">B) A primitive that draws a single quadrilateral</div>
+                        <div class="option">C) A primitive that draws a strip of triangles</div>
+                        <div class="option">D) A primitive that draws separate quadrilaterals</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 339</div>
+                    <div class="question-text">What does `glRecti` draw?</div>
+                    <div class="options">
+                        <div class="option">A) A filled, aligned rectangle</div>
+                        <div class="option">B) An empty, aligned rectangle</div>
+                        <div class="option">C) A rotated rectangle</div>
+                        <div class="option">D) A single point</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 340</div>
+                    <div class="question-text">What does `glLineWidth(4.0)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Sets the line width to 4.0 pixels</div>
+                        <div class="option">B) Sets the point size to 4.0 pixels</div>
+                        <div class="option">C) Draws 4 lines</div>
+                        <div class="option">D) Sets the window width to 4.0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 341</div>
+                    <div class="question-text">What primitive is used for a "dot plot"?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_LINES`</div>
+                        <div class="option">B) `GL_POLYGON`</div>
+                        <div class="option">C) `GL_POINTS`</div>
+                        <div class="option">D) `GL_DOTS`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 342</div>
+                    <div class="question-text">What is the purpose of the `myInit` function in the skeleton program?</div>
+                    <div class="options">
+                        <div class="option">A) To handle mouse input</div>
+                        <div class="option">B) To enter the main event loop</div>
+                        <div class="option">C) To perform additional initializations (like setting colors and projection)</div>
+                        <div class="option">D) To draw the primitives</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 343</div>
+                    <div class="question-text">What does `glutInitWindowSize(640, 480)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Sets the window's initial size</div>
+                        <div class="option">B) Sets the window's position</div>
+                        <div class="option">C) Sets the world coordinate system</div>
+                        <div class="option">D) Sets the viewport size</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 344</div>
+                    <div class="question-text">What is the 'graphics mode' for text display?</div>
+                    <div class="options">
+                        <div class="option">A) A mode for simple character I/O in a grid</div>
+                        <div class="option">B) A mode offering a richer set of character shapes that can be placed arbitrarily</div>
+                        <div class="option">C) A mode for drawing 3D text</div>
+                        <div class="option">D) A mode for drawing text using `GL_POINTS`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 345</div>
+                    <div class="question-text">What is the 'text mode' for character display?</div>
+                    <div class="options">
+                        <div class="option">A) A mode for simple character I/O, where characters can only be put in a built-in grid</div>
+                        <div class="option">B) A mode where text can be rotated and distorted</div>
+                        <div class="option">C) A mode for drawing text using `GL_POLYGON`</div>
+                        <div class="option">D) A mode for drawing outlined text</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 346</div>
+                    <div class="question-text">What are `GL_QUADS`?</div>
+                    <div class="options">
+                        <div class="option">A) A primitive that takes vertices four at a time and draws a separate quadrilateral for each</div>
+                        <div class="option">B) A primitive that draws a connected strip of quadrilaterals</div>
+                        <div class="option">C) A shortcut for `glRecti`</div>
+                        <div class="option">D) A primitive for drawing 3D cubes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 347</div>
+                    <div class="question-text">What does the `string` variable in `drawString(x, y, string)` hold?</div>
+                    <div class="options">
+                        <div class="option">A) The font name</div>
+                        <div class="option">B) The color of the text</div>
+                        <div class="option">C) The (x, y) position</div>
+                        <div class="option">D) The sequence of characters to be drawn</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 348</div>
+                    <div class="question-text">What is another name for `setPixel()`?</div>
+                    <div class="options">
+                        <div class="option">A) `drawLine()`</div>
+                        <div class="option">B) `putPixel()`, `SetPixel()`, or `drawPoint()`</div>
+                        <div class="option">C) `glColor()`</div>
+                        <div class="option">D) `glVertex()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 349</div>
+                    <div class="question-text">What is another name for `line()`?</div>
+                    <div class="options">
+                        <div class="option">A) `setPixel()`</div>
+                        <div class="option">B) `glBegin(GL_LINES)`</div>
+                        <div class="option">C) `drawPoint()`</div>
+                        <div class="option">D) `drawLine()` or `Line()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 350</div>
+                    <div class="question-text">What does `glVertex3dv(const GLdouble *v)` take as an argument?</div>
+                    <div class="options">
+                        <div class="option">A) A pointer to an array of three `GLdouble` elements (x, y, z)</div>
+                        <div class="option">B) Three separate `GLdouble` arguments (x, y, z)</div>
+                        <div class="option">C) A pointer to an array of two `GLdouble` elements (x, y)</div>
+                        <div class="option">D) A single `GLdouble` value</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 351</div>
+                    <div class="question-text">What three files are needed for a C++ application using GLUT?</div>
+                    <div class="options">
+                        <div class="option">A) `glut.h`, `glut.lib`, `glut32.dll` (or similar)</div>
+                        <div class="option">B) `gl.h`, `glu.h`, `glext.h`</div>
+                        <div class="option">C) `main.cpp`, `windows.h`, `math.h`</div>
+                        <div class="option">D) `opengl32.dll`, `glu32.dll`, `glut32.dll`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 352</div>
+                    <div class="question-text">Where should the GLUT `.dll` file (e.g., `glut32.dll`) be placed?</div>
+                    <div class="options">
+                        <div class="option">A) In the `include` folder</div>
+                        <div class="option">B) In the `lib` folder</div>
+                        <div class="option">C) In your system folder (e.g., `C:\Windows\System32`)</div>
+                        <div class="option">D) In the same folder as your `.cpp` file</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 353</div>
+                    <div class="question-text">If a point's code is TFFF (1000), where is it relative to the window?</div>
+                    <div class="options">
+                        <div class="option">A) To the Left</div>
+                        <div class="option">B) Above</div>
+                        <div class="option">C) To the Right</div>
+                        <div class="option">D) Below</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 354</div>
+                    <div class="question-text">If a point's code is FTFF (0100), where is it relative to the window?</div>
+                    <div class="options">
+                        <div class="option">A) To the Left</div>
+                        <div class="option">B) Above</div>
+                        <div class="option">C) To the Right</div>
+                        <div class="option">D) Below</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 355</div>
+                    <div class="question-text">If a point's code is FFTF (0010), where is it relative to the window?</div>
+                    <div class="options">
+                        <div class="option">A) To the Left</div>
+                        <div class="option">B) Above</div>
+                        <div class="option">C) To the Right</div>
+                        <div class="option">D) Below</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 356</div>
+                    <div class="question-text">If a point's code is FFFT (0001), where is it relative to the window?</div>
+                    <div class="options">
+                        <div class="option">A) To the Left</div>
+                        <div class="option">B) Above</div>
+                        <div class="option">C) To the Right</div>
+                        <div class="option">D) Below</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 357</div>
+                    <div class="question-text">If a point's code is TTFF (1100), where is it relative to the window?</div>
+                    <div class="options">
+                        <div class="option">A) Left and Above</div>
+                        <div class="option">B) Above and Right</div>
+                        <div class="option">C) Right and Below</div>
+                        <div class="option">D) Left and Below</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 358</div>
+                    <div class="question-text">What is the purpose of the `clipSegment()` function described?</div>
+                    <div class="options">
+                        <div class="option">A) To determine which part of a line is inside the window and report its endpoints</div>
+                        <div class="option">B) To scale the line to fit the window</div>
+                        <div class="option">C) To set the line's color based on its position</div>
+                        <div class="option">D) To draw the line</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 359</div>
+                    <div class="question-text">If a line segment (like CD in the diagram) is entirely *within* the window, what does `clipSegment()` return?</div>
+                    <div class="options">
+                        <div class="option">A) 0</div>
+                        <div class="option">B) 1</div>
+                        <div class="option">C) -1</div>
+                        <div class="option">D) The new endpoints</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 360</div>
+                    <div class="question-text">If a line segment (like AB) is entirely *outside* the window, what does `clipSegment()` return?</div>
+                    <div class="options">
+                        <div class="option">A) 0</div>
+                        <div class="option">B) 1</div>
+                        <div class="option">C) -1</div>
+                        <div class="option">D) The original endpoints</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 361</div>
+                    <div class="question-text">If one endpoint (like ED) is inside and one is outside, what does `clipSegment()` do?</div>
+                    <div class="options">
+                        <div class="option">A) Discards the entire line and returns 0</div>
+                        <div class="option">B) Clips the outside portion and returns 1</div>
+                        <div class="option">C) Keeps the entire line and returns 1</div>
+                        <div class="option">D) Returns an error</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 362</div>
+                    <div class="question-text">If both endpoints (like AE) are outside, but the segment passes through the window, what does `clipSegment()` do?</div>
+                    <div class="options">
+                        <div class="option">A) Discards the entire line and returns 0</div>
+                        <div class="option">B) Keeps the entire line and returns 1</div>
+                        <div class="option">C) Clips both ends and returns 1</div>
+                        <div class="option">D) Returns an error</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 363</div>
+                    <div class="question-text">What is an attribute of a polyline?</div>
+                    <div class="options">
+                        <div class="option">A) Line-thickness</div>
+                        <div class="option">B) Dash pattern</div>
+                        <div class="option">C) Color</div>
+                        <div class="option">D) All of the above</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 364</div>
+                    <div class="question-text">What is a filled polygon?</div>
+                    <div class="options">
+                        <div class="option">A) A shape filled with a color or pattern</div>
+                        <div class="option">B) A polygon drawn with `GL_LINE_LOOP`</div>
+                        <div class="option">C) A 3D object</div>
+                        <div class="option">D) A text character</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 365</div>
+                    <div class="question-text">In a "hardwired" house drawing, where are the vertex positions stored?</div>
+                    <div class="options">
+                        <div class="option">A) In a separate file</div>
+                        <div class="option">B) In variables that can be changed</div>
+                        <div class="option">C) As numerical constants directly in the code</div>
+                        <div class="option">D) In the mouse callback</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 366</div>
+                    <div class="question-text">What function is used to plot the function `e^-x * cos(2*pi*x)` in Example 4?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_LINES)`</div>
+                        <div class="option">B) `glBegin(GL_POINTS)`</div>
+                        <div class="option">C) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">D) `glRecti()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 367</div>
+                    <div class="question-text">What C library is needed for `exp()` and `cos()` in Example 4?</div>
+                    <div class="options">
+                        <div class="option">A) `<windows.h>`</div>
+                        <div class="option">B) `<GL/glut.h>`</div>
+                        <div class="option">C) `<math.h>`</div>
+                        <div class="option">D) `<GL/GL.h>`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 368</div>
+                    <div class="question-text">What C library is needed for `rand()` and `srand()`?</div>
+                    <div class="options">
+                        <div class="option">A) `<stdlib.h>` (implied by `rand()`)</div>
+                        <div class="option">B) `<math.h>`</div>
+                        <div class="option">C) `<GL/glut.h>`</div>
+                        <div class="option">D) `<windows.h>`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 369</div>
+                    <div class="question-text">In the `drawFlurry` example, how is the gray level for each rectangle determined?</div>
+                    <div class="options">
+                        <div class="option">A) It is always 0.5</div>
+                        <div class="option">B) It is passed as an argument</div>
+                        <div class="option">C) It is a random value between 0.0 and 1.0</div>
+                        <div class="option">D) It alternates between black and white</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 370</div>
+                    <div class="question-text">What is the "Sierpinski Gasket"?</div>
+                    <div class="options">
+                        <div class="option">A) A type of OpenGL function</div>
+                        <div class="option">B) A fractal shape made of triangles</div>
+                        <div class="option">C) A hardware component</div>
+                        <div class="option">D) A line clipping algorithm</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 371</div>
+                    <div class="question-text">In the Sierpinski example, what are the initial three points `T[3]`?</div>
+                    <div class="options">
+                        <div class="option">A) The corners of the main triangle</div>
+                        <div class="option">B) The corners of the screen</div>
+                        <div class="option">C) Three random points</div>
+                        <div class="option">D) The (0,0), (1,1), (2,2) points</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 372</div>
+                    <div class="question-text">What does the `random(3)` function return in the Sierpinski example?</div>
+                    <div class="options">
+                        <div class="option">A) A number between 0 and 3</div>
+                        <div class="option">B) One of the values 0, 1, or 2</div>
+                        <div class="option">C) A random float value</div>
+                        <div class="option">D) The number 3</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 373</div>
+                    <div class="question-text">What OpenGL type is defined as `signed char`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLint`</div>
+                        <div class="option">B) `GLbyte`</div>
+                        <div class="option">C) `GLshort`</div>
+                        <div class="option">D) `GLubyte`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 374</div>
+                    <div class="question-text">What OpenGL type is defined as `unsigned short`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLuint`</div>
+                        <div class="option">B) `GLubyte`</div>
+                        <div class="option">C) `GLshort`</div>
+                        <div class="option">D) `GLushort`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 375</div>
+                    <div class="question-text">What OpenGL type is defined as `unsigned long`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLuint`, `GLenum`, `GLbitfield`</div>
+                        <div class="option">B) `GLubyte`</div>
+                        <div class="option">C) `GLint`</div>
+                        <div class="option">D) `GLdouble`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+            </div>
+            
+            </div>
+
+        <div class="footer">
+            <p>Computer Graphics Midterm MCQ Bank - Complete Coverage of All 3 Chapters | 500+ Questions | <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Graphics Midterm MCQ - Part 4</title>
+    <style>
+        /* ... (Your existing CSS code) ... */
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #e9ecef;
+            color: #000;
+        }
+        
+        .nav-link.active {
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .developer-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            /* Estimate button width to be around 300px */
+            width: 290px; 
+            justify-content: center;
+        }
+        
+        .developer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .icon-code {
+            font-weight: bold;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        /* Wrapper for header text to prevent overlap */
+        .header-text {
+            /* Add padding to the right to avoid the button */
+            /* Button width (290px) + position (20px) + extra space (20px) = 330px */
+            padding-right: 330px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-box .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .question {
+            background: #ffffff;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+        }
+        
+        .correct-answer {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            border-left: 4px solid #28a745;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .question {
+                page-break-inside: avoid;
+            }
+            
+            .developer-button {
+                display: none;
+            }
+        }
+
+        /* On screens 900px or less, the button might still overlap */
+        @media (max-width: 900px) {
+             .header-text {
+                padding-right: 0; /* Remove padding */
+                margin-top: 60px; /* Add margin to top to avoid button */
+            }
+            .developer-button {
+                /* Center the button on smaller desktop/tablet */
+                left: 50%;
+                transform: translateX(-50%);
+                width: 290px;
+            }
+        }
+
+
+        @media (max-width: 768px) {
+            .developer-button {
+                position: static;
+                transform: none; /* Reset transform */
+                display: inline-flex;
+                margin-top: 15px;
+                width: auto; /* Reset width */
+            }
+            .header-text {
+                padding-right: 0;
+                margin-top: 0; /* Reset margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="https://itzsho3aib.github.io/shoaibs.portfolio/" class="developer-button" target="_blank">
+                <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib
+            </a>
+            <div class="header-text">
+                <h1>🎓 Computer Graphics Midterm MCQ (Part 4 of 4)</h1>
+                <p>Question Bank - Questions 376-500 | Chapters 1, 2 & 3</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">125</div>
+                <div class="label">Questions in this part</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">3</div>
+                <div class="label">Chapters Covered</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">500</div>
+                <div class="label">Total Questions</div>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="part1.html" class="nav-link">Part 1</a>
+            <a href="part2.html" class="nav-link">Part 2</a>
+            <a href="part3.html" class="nav-link">Part 3</a>
+            <a href="part4.html" class="nav-link">Part 4</a>
+        </div>
+        <div class="content">
+            
+            <div class="section">
+                <div class="section-title">🖼️ Chapter 3: Windows, Viewports and Clipping (Continued)</div>
+
+                <div class="question">
+                    <div class="question-number">Question 376</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what are the codes for p1=(40, 140) and p2=(100, 200)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF and FFFF</div>
+                        <div class="option">B) TFFF and FFFF</div>
+                        <div class="option">C) TFFT and FFTF</div>
+                        <div class="option">D) FFFF and FTTF</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 377</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the clipping result for p1=(40, 140) and p2=(100, 200)?</div>
+                    <div class="options">
+                        <div class="option">A) Trivial Accept</div>
+                        <div class="option">B) Trivial Reject</div>
+                        <div class="option">C) Must be clipped</div>
+                        <div class="option">D) Invalid coordinates</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 378</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the 4-bit region code for the point (10, 270)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF</div>
+                        <div class="option">B) TFFF</div>
+                        <div class="option">C) FTTF</div>
+                        <div class="option">D) TTFF (Left, Above)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 379</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the 4-bit region code for the point (300, 0)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF</div>
+                        <div class="option">B) FFTF (Right, Above)</div>
+                        <div class="option">C) FFTT (Right, Below)</div>
+                        <div class="option">D) TFFT (Left, Below)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 380</div>
+                    <div class="question-text">Given code1 = TTFF (1100) and code2 = FFTT (0011), what is the result of (code1 AND code2)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF (0000)</div>
+                        <div class="option">B) TTTT (1111)</div>
+                        <div class="option">C) TTFT (1101)</div>
+                        <div class="option">D) FFTF (0010)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 381</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the 4-bit region code for the point (20, 10)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF</div>
+                        <div class="option">B) TFFF</div>
+                        <div class="option">C) FFFT</div>
+                        <div class="option">D) TFFT (Left, Below)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 382</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the 4-bit region code for the point (20, 200)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF</div>
+                        <div class="option">B) TFFF (Left)</div>
+                        <div class="option">C) FTFF (Above)</div>
+                        <div class="option">D) TFFT (Left, Below)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 383</div>
+                    <div class="question-text">Given code1 = TFFT (1001) and code2 = TFFF (1000), what is the result of (code1 AND code2)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF (0000)</div>
+                        <div class="option">B) TFFF (1000)</div>
+                        <div class="option">C) TFFT (1001)</div>
+                        <div class="option">D) TTTT (1111)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 384</div>
+                    <div class="question-text">Based on (code1 AND code2) = TFFF (1000), what is the clipping result for the line?</div>
+                    <div class="options">
+                        <div class="option">A) Trivial Accept</div>
+                        <div class="option">B) Trivial Reject (because the result is not 0000)</div>
+                        <div class="option">C) Must be clipped</div>
+                        <div class="option">D) Invalid result</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 385</div>
+                    <div class="question-text">For window (30, 220, 50, 240), what is the 4-bit region code for the point (250, 250)?</div>
+                    <div class="options">
+                        <div class="option">A) FFFF</div>
+                        <div class="option">B) FTTF (Above, Right)</div>
+                        <div class="option">C) TFFT (Left, Below)</div>
+                        <div class="option">D) FFTF (Right, Above)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 386</div>
+                    <div class="question-text">Given code1 = TFFT (1001) and code2 = FTTF (0110), what is the clipping result?</div>
+                    <div class="options">
+                        <div class="option">A) Trivial Accept</div>
+                        <div class="option">B) Trivial Reject</div>
+                        <div class="option">C) Must be clipped (because (code1 AND code2) is 0000)</div>
+                        <div class="option">D) Invalid codes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 387</div>
+                    <div class="question-text">What is "Turtle Graphics" mentioned as?</div>
+                    <div class="options">
+                        <div class="option">A) A type of clipping algorithm</div>
+                        <div class="option">B) A way to create 3D models</div>
+                        <div class="option">C) A set of useful drawing tools</div>
+                        <div class="option">D) A 3D viewing method</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+            <div class="section-title">📚 Chapters 1 & 2: Review Questions</div>
+
+                <div class="question">
+                    <div class="question-number">Question 388</div>
+                    <div class="question-text">Which of these is listed first in "Topics to Cover" from Chapter 1?</div>
+                    <div class="options">
+                        <div class="option">A) Introduction to Computer Graphics: definition, history, applications, hardware, and software</div>
+                        <div class="option">B) Algorithms for drawing 2D primitives</div>
+                        <div class="option">C) Geometrical 2D and 3D transformation</div>
+                        <div class="option">D) A guide to OpenGL</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 389</div>
+                    <div class="question-text">What topic is listed as following "Algorithms for drawing 2D primitives" in Chapter 1?</div>
+                    <div class="options">
+                        <div class="option">A) Viewing in 3D</div>
+                        <div class="option">B) Color and lighting</div>
+                        <div class="option">C) Geometrical 2D and 3D transformation</div>
+                        <div class="option">D) A guide to OpenGL</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 390</div>
+                    <div class="question-text">What topic covers viewing 3D objects on a 2D computer monitor?</div>
+                    <div class="options">
+                        <div class="option">A) Viewing in 3D</div>
+                        <div class="option">B) 2D Primitives</div>
+                        <div class="option">C) Color and lighting</div>
+                        <div class="option">D) Introduction to Computer Graphics</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 391</div>
+                    <div class="question-text">What is an example feature of a ray-traced picture?</div>
+                    <div class="options">
+                        <div class="option">A) Shadows</div>
+                        <div class="option">B) Wireframe lines</div>
+                        <div class="option">C) 2D transformations</div>
+                        <div class="option">D) Aliasing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 392</div>
+                    <div class="question-text">What is the process of explaining real-world or fantastic objects using mathematics?</div>
+                    <div class="options">
+                        <div class="option">A) Rendering</div>
+                        <div class="option">B) Animation</div>
+                        <div class="option">C) Modeling</div>
+                        <div class="option">D) Image Processing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 393</div>
+                    <div class="question-text">What is drawn by an artist if the image does not exist in real life, to serve as a basis for a model?</div>
+                    <div class="options">
+                        <div class="option">A) A blueprint</div>
+                        <div class="option">B) A pixel map</div>
+                        <div class="option">C) A ray-traced image</div>
+                        <div class="option">D) A display list</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 394</div>
+                    <div class="question-text">Which rendering component deals with "surface-removal hiding"?</div>
+                    <div class="options">
+                        <div class="option">A) Color</div>
+                        <div class="option">B) Lighting</div>
+                        <div class="option">C) Intersection</div>
+                        <div class="option">D) Shading</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 395</div>
+                    <div class="question-text">What kind of programs are used for "Slide, Book, and Magazine Design"?</div>
+                    <div class="options">
+                        <div class="option">A) Page layout programs</div>
+                        <div class="option">B) Flight simulators</div>
+                        <div class="option">C) Paint systems</div>
+                        <div class="option">D) CAD programs</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 396</div>
+                    <div class="question-text">What system allows a user to "interactively move text and graphics around to find the most pleasing arrangement"?</div>
+                    <div class="options">
+                        <div class="option">A) Page layout programs</div>
+                        <div class="option">B) Process monitoring systems</div>
+                        <div class="option">C) Volume visualization</div>
+                        <div class="option">D) CAD systems</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 397</div>
+                    <div class="question-text">What is a common example of a paint system and photo manipulation system?</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL</div>
+                        <div class="option">B) Adobe Photoshop</div>
+                        <div class="option">C) AutoCAD</div>
+                        <div class="option">D) A flight simulator</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 398</div>
+                    <div class="question-text">What is an example of a "Process Monitoring" system?</div>
+                    <div class="options">
+                        <div class="option">A) Air traffic control</div>
+                        <div class="option">B) Adobe Photoshop</div>
+                        <div class="option">C) Designing a house</div>
+                        <div class="option">D) Medical visualization</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 399</div>
+                    <div class="question-text">In Computer-Aided Design (CAD), what can be used to test if inner workings will fit inside a casing?</div>
+                    <div class="options">
+                        <div class="option">A) A paint system</div>
+                        <div class="option">B) A raster display</div>
+                        <div class="option">C) Algorithms for analysis and simulation</div>
+                        <div class="option">D) A page layout program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 400</div>
+                    <div class="question-text">What is an example of "Displaying Simulations"?</div>
+                    <div class="options">
+                        <div class="option">A) A flight simulator</div>
+                        <div class="option">B) A paint system</div>
+                        <div class="option">C) A user interface</div>
+                        <div class="option">D) Medical visualization</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 401</div>
+                    <div class="question-text">Which of these is an input device?</div>
+                    <div class="options">
+                        <div class="option">A) Monitor</div>
+                        <div class="option">B) Printer</div>
+                        <div class="option">C) Trackball</div>
+                        <div class="option">D) Graphics card</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 402</div>
+                    <div class="question-text">What does the "Display Controller (DC)" in a vector display do?</div>
+                    <div class="options">
+                        <div class="option">A) Stores the pixel data</div>
+                        <div class="option">B) Processes display commands from the refresh buffer</div>
+                        <div class="option">C) Receives input from the mouse</div>
+                        <div class="option">D) Scans the screen from top to bottom</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 403</div>
+                    <div class="question-text">What does a "Refresh Buffer" in a vector display store?</div>
+                    <div class="options">
+                        <div class="option">A) Display Commands (display list)</div>
+                        <div class="option">B) A pixel map</div>
+                        <div class="option">C) A bitmap</div>
+                        <div class="option">D) The final 2D image</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 404</div>
+                    <div class="question-text">Which of the following is a command type found in a vector display's refresh buffer?</div>
+                    <div class="options">
+                        <div class="option">A) `MOVE`, `LINE`, `CHAR`</div>
+                        <div class="option">B) `SET_PIXEL`</div>
+                        <div class="option">C) `RENDER`</div>
+                        <div class="option">D) `SHADER`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 405</div>
+                    <div class="question-text">How is region-filling simulated on vector displays?</div>
+                    <div class="options">
+                        <div class="option">A) Using solid colors</div>
+                        <div class="option">B) Using a pixel map</div>
+                        <div class="option">C) By cross-hatching</div>
+                        <div class="option">D) It is not possible</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 406</div>
+                    <div class="question-text">A 6.3 Megapixel digital camera ($3072 \times 2048$) needs to store information for how many pixels?</div>
+                    <div class="options">
+                        <div class="option">A) 307,200</div>
+                        <div class="option">B) 6,291,456</div>
+                        <div class="option">C) 3072</div>
+                        <div class="option">D) 6.3</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 407</div>
+                    <div class="question-text">How many gray levels can 4 bits per pixel produce?</div>
+                    <div class="options">
+                        <div class="option">A) 4</div>
+                        <div class="option">B) 8</div>
+                        <div class="option">C) 16</div>
+                        <div class="option">D) 256</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 408</div>
+                    <div class="question-text">What is a `bi-level` image?</div>
+                    <div class="options">
+                        <div class="option">A) An image with 2 bits per pixel</div>
+                        <div class="option">B) An image with 1 bit per pixel (2 colors)</div>
+                        <div class="option">C) An image with 2 gray levels</div>
+                        <div class="option">D) A 3D image</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 409</div>
+                    <div class="question-text">What is a `pixel map`?</div>
+                    <div class="options">
+                        <div class="option">A) The rectangular array of numerical values for a raster image</div>
+                        <div class="option">B) A list of display commands for a vector display</div>
+                        <div class="option">C) A map of the world in pixels</div>
+                        <div class="option">D) A color look-up table</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 410</div>
+                    <div class="question-text">A 24-bit color system is also known as...</div>
+                    <div class="options">
+                        <div class="option">A) Indexed-Color</div>
+                        <div class="option">B) Bi-level</div>
+                        <div class="option">C) True-Color</div>
+                        <div class="option">D) Grayscale</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 411</div>
+                    <div class="question-text">How many bits are *usually* given for each component (R, G, B) in a 24-bit true-color system?</div>
+                    <div class="options">
+                        <div class="option">A) 3 bits for R, 3 for G, 2 for B</div>
+                        <div class="option">B) 8 bits for each component</div>
+                        <div class="option">C) 24 bits for each component</div>
+                        <div class="option">D) 1 bit for each component</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 412</div>
+                    <div class="question-text">What is a "color look-up table" (LUT)?</div>
+                    <div class="options">
+                        <div class="option">A) A table of colors indexed by pixel values (Indexed Color)</div>
+                        <div class="option">B) A table of vertex coordinates</div>
+                        <div class="option">C) The frame buffer for RGB color</div>
+                        <div class="option">D) A list of display commands</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 413</div>
+                    <div class="question-text">Which of the following is NOT an OpenGL primitive type shown in the diagram on Page 3 (Ch 2)?</div>
+                    <div class="options">
+                        <div class="option">A) `GL_POINTS`</div>
+                        <div class="option">B) `GL_LINES`</div>
+                        <div class="option">C) `GL_CIRCLE`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 414</div>
+                    <div class="question-text">Which attribute determines if a polygon is displayed as filled, edges, or vertices?</div>
+                    <div class="options">
+                        <div class="option">A) Polygon mode</div>
+                        <div class="option">B) Stipple pattern</div>
+                        <div class="option">C) Color</div>
+                        <div class="option">D) Size</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 415</div>
+                    <div class="question-text">What routine is suggested to draw a filled polygon in the "Filled-Regions" section?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">B) `glFill(poly)`</div>
+                        <div class="option">C) `fillPolygon(poly, pattern)`</div>
+                        <div class="option">D) `drawFilledRegion(poly)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 416</div>
+                    <div class="question-text">In Figure 1.18, how are the faces of the 3D object shaded?</div>
+                    <div class="options">
+                        <div class="option">A) Each face is filled with a shade of gray</div>
+                        <div class="option">B) Only the edges are drawn (wireframe)</div>
+                        <div class="option">C) A stipple pattern is used</div>
+                        <div class="option">D) A single solid color is used for the whole object</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 417</div>
+                    <div class="question-text">The shading of faces in Figure 1.18 corresponds to what?</div>
+                    <div class="options">
+                        <div class="option">A) The object's weight</div>
+                        <div class="option">B) The amount of light that would reflect off that face</div>
+                        <div class="option">C) The polygon's area</div>
+                        <div class="option">D) A random pattern</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 418</div>
+                    <div class="question-text">What does `GLFW` stand for, as an alternative to GLUT?</div>
+                    <div class="options">
+                        <div class="option">A) OpenGL For Windows</div>
+                        <div class="option">B) OpenGL Frame-buffer Windowing</div>
+                        <div class="option">C) OpenGL GLFW Toolkit</div>
+                        <div class="option">D) It is not defined</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 419</div>
+                    <div class="question-text">What is `glui32.lib`?</div>
+                    <div class="options">
+                        <div class="option">A) A library to be linked for OpenGL projects</div>
+                        <div class="option">B) A header file</div>
+                        <div class="option">C) A DLL file</div>
+                        <div class="option">D) A C++ source file</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 420</div>
+                    <div class="question-text">In the OpenGL function format `glVertex3f`, what does the '3' represent?</div>
+                    <div class="options">
+                        <div class="option">A) The number of dimensions (e.g., 3 for x,y,z)</div>
+                        <div class="option">B) The data type (e.g., 3 for float)</div>
+                        <div class="option">C) The library (e.g., 3 for GLUT)</div>
+                        <div class="option">D) The version number</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 421</div>
+                    <div class="question-text">In the OpenGL function format `glVertex2i`, what does the 'i' represent?</div>
+                    <div class="options">
+                        <div class="option">A) The arguments are `GLint` (32-bit integer)</div>
+                        <div class="option">B) The arguments are `GLfloat`</div>
+                        <div class="option">C) The function is 'independent'</div>
+                        <div class="option">D) The function is for 'images'</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 422</div>
+                    <div class="question-text">How should you declare a `GLfloat` variable with the value 0.0 to ensure accuracy?</div>
+                    <div class="options">
+                        <div class="option">A) `GLfloat myFloat = 0;`</div>
+                        <div class="option">B) `GLfloat myFloat = 0.0;`</div>
+                        <div class="option">C) `GLfloat myFloat = 0.0f;`</div>
+                        <div class="option">D) `GLfloat myFloat = (GLfloat)0;`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 423</div>
+                    <div class="question-text">What coordinate system are graphics commands attached to?</div>
+                    <div class="options">
+                        <div class="option">A) The window</div>
+                        <div class="option">B) The screen</div>
+                        <div class="option">C) The world</div>
+                        <div class="option">D) The hardware</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 424</div>
+                    <div class="question-text">What is the coordinate system in `glutInitWindowPosition(100, 150)` relative to?</div>
+                    <div class="options">
+                        <div class="option">A) The center of the screen</div>
+                        <div class="option">B) The bottom-left of the screen</div>
+                        <div class="option">C) The top-left of the screen</div>
+                        <div class="option">D) The previous window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 425</div>
+                    <div class="question-text">What is the "event loop" in GLUT?</div>
+                    <div class="options">
+                        <div class="option">A) A function that draws primitives</div>
+                        <div class="option">B) A function that initializes the library</div>
+                        <div class="option">C) A never-ending loop that waits for user events (mouse, keyboard, etc.)</div>
+                        <div class="option">D) A `for` loop that iterates through all pixels</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 426</div>
+                    <div class="question-text">What function enters the GLUT event loop?</div>
+                    <div class="options">
+                        <div class="option">A) `glutMainLoop()`</div>
+                        <div class="option">B) `glutEventLoop()`</div>
+                        <div class="option">C) `glutInit()`</div>
+                        <div class="option">D) `glutDisplayFunc()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 427</div>
+                    <div class="question-text">What is the coordinate system from `glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0)`?</div>
+                    <div class="options">
+                        <div class="option">A) The default viewing volume (a box centered at origin with side length 2)</div>
+                        <div class="option">B) A box from (0,0,0) to (1,1,1)</div>
+                        <div class="option">C) The screen pixel coordinates</div>
+                        <div class="option">D) A 2D clipping window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 428</div>
+                    <div class="question-text">What plane do 2D vertex commands like `glVertex2f(x,y)` place vertices on?</div>
+                    <div class="options">
+                        <div class="option">A) The plane z = 0</div>
+                        <div class="option">B) The plane z = 1</div>
+                        <div class="option">C) The plane z = -1</div>
+                        <div class="option">D) The plane y = 0</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 429</div>
+                    <div class="question-text">What OpenGL type is defined as `float`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLfloat`</div>
+                        <div class="option">B) `GLdouble`</div>
+                        <div class="option">C) `GLint`</div>
+                        <div class="option">D) `GLbyte`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 430</div>
+                    <div class="question-text">What OpenGL type is defined as `double`?</div>
+                    <div class="options">
+                        <div class="option">A) `GLfloat`</div>
+                        <div class="option">B) `GLdouble`</div>
+                        <div class="option">C) `GLint`</div>
+                        <div class="option">D) `GLlong`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 431</div>
+                    <div class="question-text">Why is `void drawDot(int x, int y)` considered "Danger"?</div>
+                    <div class="options">
+                        <div class="option">A) Because the `int` datatype might have a different size on different operating systems</div>
+                        <div class="option">B) Because `drawDot` is not a real OpenGL function</div>
+                        <div class="option">C) Because `glVertex2i` does not accept `int`</div>
+                        <div class="option">D) Because `x` and `y` are not pointers</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 432</div>
+                    <div class="question-text">What function from `<math.h>` is used to calculate `e^-x` in the dot plot example?</div>
+                    <div class="options">
+                        <div class="option">A) `pow(e, -x)`</div>
+                        <div class="option">B) `log(-x)`</div>
+                        <div class="option">C) `exp(-x)`</div>
+                        <div class="option">D) `cos(-x)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 433</div>
+                    <div class="question-text">What is a `GL_LINE_STRIP`?</div>
+                    <div class="options">
+                        <div class="option">A) A primitive for drawing a connected polyline (open)</div>
+                        <div class="option">B) A primitive for drawing separate lines</div>
+                        <div class="option">C) A primitive for drawing a closed polyline</div>
+                        <div class="option">D) A primitive for drawing a filled rectangle</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 434</div>
+                    <div class="question-text">What is a `GL_LINE_LOOP`?</div>
+                    <div class="options">
+                        <div class="option">A) A primitive for drawing an open polyline</div>
+                        <div class="option">B) A primitive for drawing separate lines</div>
+                        <div class="option">C) A primitive for drawing a closed polyline</div>
+                        <div class="option">D) A primitive for drawing a filled polygon</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 435</div>
+                    <div class="question-text">What is the "hardwired" approach to drawing not flexible?</div>
+                    <div class="options">
+                        <div class="option">A) Because it can only draw one house in one size and one location</div>
+                        <div class="option">B) Because it uses `glBegin`</div>
+                        <div class="option">C) Because it uses `GL_LINE_LOOP`</div>
+                        <div class="option">D) Because it is too slow</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 436</div>
+                    <div class="question-text">What does `glRecti(20, 20, 100, 70)` draw?</div>
+                    <div class="options">
+                        <div class="option">A) A filled rectangle with corners at (20, 20) and (100, 70)</div>
+                        <div class="option">B) An empty rectangle with corners at (20, 20) and (100, 70)</div>
+                        <div class="option">C) A point at (100, 70)</div>
+                        <div class="option">D) A line from (20, 20) to (100, 70)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 437</div>
+                    <div class="question-text">In the `drawFlurry` example, how are the rectangle corners `x1`, `y1`, `x2`, `y2` chosen?</div>
+                    <div class="options">
+                        <div class="option">A) They are fixed at (0, 0) and (Width, Height)</div>
+                        <div class="option">B) They are chosen randomly within the `Width` and `Height`</div>
+                        <div class="option">C) They are passed as arguments</div>
+                        <div class="option">D) They increment in a `for` loop</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 438</div>
+                    <div class="question-text">What is the logic for alternating colors in `drawChessBoard`?</div>
+                    <div class="options">
+                        <div class="option">A) `if (i % 2 == 0)`</div>
+                        <div class="option">B) `if (j % 2 == 0)`</div>
+                        <div class="option">C) `if ((i+j) % 2 == 0)`</div>
+                        <div class="option">D) `if (i == j)`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 439</div>
+                    <div class="question-text">Can polygons drawn with `GL_POLYGON` be filled with a stipple pattern?</div>
+                    <div class="options">
+                        <div class="option">A) Yes</div>
+                        <div class="option">B) No</div>
+                        <div class="option">C) Only if they are convex</div>
+                        <div class="option">D) Only if they are triangles</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 440</div>
+                    <div class="question-text">What is the "Anatomy of GLUT"?</div>
+                    <div class="options">
+                        <div class="option">A) The way GLUT handles events using callback functions (display, reshape, keyboard, mouse)</div>
+                        <div class="option">B) The 3D model of a human used in medical visualization</div>
+                        <div class="option">C) The list of `gl.h`, `glu.h`, and `glut.h`</div>
+                        <div class="option">D) The hardware requirements for running GLUT</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 441</div>
+                    <div class="question-text">What does `myReshape(void)` in the Anatomy of Open GL slide represent? (Note: prototype is incorrect in slide)</div>
+                    <div class="options">
+                        <div class="option">A) The display callback</div>
+                        <div class="option">B) The reshape callback</div>
+                        <div class="option">C) The mouse callback</div>
+                        <div class="option">D) The keyboard callback</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 442</div>
+                    <div class="question-text">What is the purpose of `glutMotionFunc(myMovedMouse)`?</div>
+                    <div class="options">
+                        <div class="option">A) To register the callback for when the mouse is moved while a button is pressed</div>
+                        <div class="option">B) To register the callback for when a mouse button is clicked</div>
+                        <div class="option">C) To register the callback for when the mouse is moved *without* a button pressed</div>
+                        <div class="option">D) To register the callback for animation</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 443</div>
+                    <div class="question-text">What does the `state` parameter in `myMouse` distinguish between?</div>
+                    <div class="options">
+                        <div class="option">A) `GLUT_UP` and `GLUT_DOWN`</div>
+                        <div class="option">B) `GLUT_LEFT_BUTTON` and `GLUT_RIGHT_BUTTON`</div>
+                        <div class="option">C) The x and y position</div>
+                        <div class="option">D) A click and a double-click</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 444</div>
+                    <div class="question-text">In the "freehand drawing" example, how is the "fat brush" created?</div>
+                    <div class="options">
+                        <div class="option">A) By calling `glPointSize(brushSize)`</div>
+                        <div class="option">B) By calling `glLineWidth(brushSize)`</div>
+                        <div class="option">C) By drawing a small rectangle (`glRecti`) at the mouse position</div>
+                        <div class="option">D) By drawing a `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 445</div>
+                    <div class="question-text">In the keyboard callback, what does the `key` parameter hold?</div>
+                    <div class="options">
+                        <div class="option">A) The ASCII value of the key pressed</div>
+                        <div class="option">B) The mouse x-coordinate</div>
+                        <div class="option">C) The mouse y-coordinate</div>
+                        <div class="option">D) A special code like `GLUT_KEY_LEFT`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 446</div>
+                    <div class="question-text">In the keyboard callback example, what does pressing 'p' do?</div>
+                    <div class="options">
+                        <div class="option">A) Exits the program</div>
+                        <div class="option">B) Draws a dot at the mouse position</div>
+                        <div class="option">C) Clears the screen</div>
+                        <div class="option">D) Resets the polyline</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 447</div>
+                    <div class="question-text">In the keyboard callback example, what does pressing 'E' do?</div>
+                    <div class="options">
+                        <div class="option">A) Draws a dot</div>
+                        <div class="option">B) Does nothing</div>
+                        <div class="option">C) Breaks from the switch statement</div>
+                        <div class="option">D) Terminates the program</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 448</div>
+                    <div class="question-text">What is the "world" in the context of Windows and Viewports?</div>
+                    <div class="options">
+                        <div class="option">A) The physical screen</div>
+                        <div class="option">B) The real world, or what you can see</div>
+                        <div class="option">C) The viewport</div>
+                        <div class="option">D) The screen window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 449</div>
+                    <div class="question-text">What is the "screen window"?</div>
+                    <div class="options">
+                        <div class="option">A) The physical monitor (Screen)</div>
+                        <div class="option">B) The window created by the operating system</div>
+                        <div class="option">C) The world window</div>
+                        <div class="option">D) The viewport</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 450</div>
+                    <div class="question-text">What is the "screen"?</div>
+                    <div class="options">
+                        <div class="option">A) The physical monitor</div>
+                        <div class="option">B) The OS window</div>
+                        <div class="option">C) The viewport</div>
+                        <div class="option">D) The world window</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 451</div>
+                    <div class="question-text">What does the `myReshape` callback function receive as parameters?</div>
+                    <div class="options">
+                        <div class="option">A) The new width and height (W, H) of the screen window</div>
+                        <div class="option">B) The old width and height</div>
+                        <div class="option">C) The mouse coordinates (x, y)</div>
+                        <div class="option">D) The window aspect ratio (R)</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 452</div>
+                    <div class="question-text">What is the OpenGL data type `GLsizei`?</div>
+                    <div class="options">
+                        <div class="option">A) A 32-bit integer</div>
+                        <div class="option">B) A 32-bit float</div>
+                        <div class="option">C) A 64-bit double</div>
+                        <div class="option">D) An 8-bit char</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 453</div>
+                    <div class="question-text">If you don't call `glViewport` inside your `myReshape` function, what does the viewport default to?</div>
+                    <div class="options">
+                        <div class="option">A) The default viewport (the entire *new* window size)</div>
+                        <div class="option">B) The *old* window size</div>
+                        <div class="option">C) A 100x100 square</div>
+                        <div class="option">D) The world coordinates</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 454</div>
+                    <div class="question-text">What is the goal of a "Matched Viewport"?</div>
+                    <div class="options">
+                        <div class="option">A) To make the viewport the same size as the screen</div>
+                        <div class="option">B) To make the viewport have the same aspect ratio as the world window</div>
+                        <div class="option">C) To make the viewport and window have different aspect ratios</div>
+                        <div class="option">D) To center the viewport</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 455</div>
+                    <div class="question-text">Why is matching the aspect ratios of the viewport and world window important?</div>
+                    <div class="options">
+                        <div class="option">A) To make the program run faster</div>
+                        <div class="option">B) To use less memory</div>
+                        <div class="option">C) To prevent distortion in the picture</div>
+                        <div class="option">D) To enable 3D graphics</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 456</div>
+                    <div class="question-text">If R is the window aspect ratio, W and H are screen dimensions, and R > W/H (window is "flatter"), what is the viewport height?</div>
+                    <div class="options">
+                        <div class="option">A) H</div>
+                        <div class="option">B) W</div>
+                        <div class="option">C) W/R</div>
+                        <div class="option">D) H*R</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 457</div>
+                    <div class="question-text">If R is the window aspect ratio, W and H are screen dimensions, and R > W/H (window is "flatter"), what is the viewport width?</div>
+                    <div class="options">
+                        <div class="option">A) H</div>
+                        <div class="option">B) W</div>
+                        <div class="option">C) W/R</div>
+                        <div class="option">D) H*R</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 458</div>
+                    <div class="question-text">If R is the window aspect ratio, W and H are screen dimensions, and R < W/H (window is "taller"), what is the viewport width?</div>
+                    <div class="options">
+                        <div class="option">A) H</div>
+                        <div class="option">B) W</div>
+                        <div class="option">C) W/R</div>
+                        <div class="option">D) H*R</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: D</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 459</div>
+                    <div class="question-text">If R is the window aspect ratio, W and H are screen dimensions, and R < W/H (window is "taller"), what is the viewport height?</div>
+                    <div class="options">
+                        <div class="option">A) H</div>
+                        <div class="option">B) W</div>
+                        <div class="option">C) W/R</div>
+                        <div class="option">D) H*R</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 460</div>
+                    <div class="question-text">In the "polyline with mouse" example, what is the array `List[NUM]` used for?</div>
+                    <div class="options">
+                        <div class="option">A) To store the points (vertices) of the polyline</div>
+                        <div class="option">B) To store the colors of the lines</div>
+                        <div class="option">C) To store the state of the mouse buttons</div>
+                        <div class="option">D) To store the region codes for clipping</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 461</div>
+                    <div class="question-text">In the "polyline with mouse" example, what does `last = -1;` (triggered by the right button) do?</div>
+                    <div class="options">
+                        <div class="option">A) It draws the last segment</div>
+                        <div class="option">B) It resets the list to empty</div>
+                        <div class="option">C) It exits the program</div>
+                        <div class="option">D) It adds the last point</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 462</div>
+                    <div class="question-text">In the "freehand drawing" example, what primitive is used to create the "fat brush"?</div>
+                    <div class="options">
+                        <div class="option">A) `glRecti()`</div>
+                        <div class="option">B) `glPointSize()`</div>
+                        <div class="option">C) `glLineWidth()`</div>
+                        <div class="option">D) `GL_POLYGON`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 463</div>
+                    <div class="question-text">In the keyboard callback, what does `case 'E': exit(-1);` do?</div>
+                    <div class="options">
+                        <div class="option">A) Terminates the program</div>
+                        <div class="option">B) Draws the letter 'E'</div>
+                        <div class="option">C) Erases the screen</div>
+                        <div class="option">D) Does nothing</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 464</div>
+                    <div class="question-text">What is "Modeling" concerned with?</div>
+                    <div class="options">
+                        <div class="option">A) Creating and representing the geometry of objects</div>
+                        <div class="option">B) Generating 2D images of objects</div>
+                        <div class="option">C) Describing how objects move</div>
+                        <div class="option">D) Improving existing images</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 465</div>
+                    <div class="question-text">What is "Rendering" concerned with?</div>
+                    <div class="options">
+                        <div class="option">A) Creating and representing the geometry of objects</div>
+                        <div class="option">B) Generating 2D images of objects</div>
+                        <div class="option">C) Describing how objects move</div>
+                        <div class="option">D) Analyzing images</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 466</div>
+                    <div class="question-text">What is "Animation" concerned with?</div>
+                    <div class="options">
+                        <div class="option">A) Creating and representing the geometry of objects</div>
+                        <div class="option">B) Generating 2D images of objects</div>
+                        <div class="option">C) Describing how objects move</div>
+                        <div class="option">D) Enhancing image contrast</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 467</div>
+                    <div class="question-text">What is a `wireframe model`?</div>
+                    <div class="options">
+                        <div class="option">A) The simplest form of model, showing interconnected lines</div>
+                        <div class="option">B) A fully rendered model with textures</div>
+                        <div class="option">C) A 2D image</div>
+                        <div class="option">D) An animation sequence</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 468</div>
+                    <div class="question-text">Which rendering component deals with "surface-removal hiding"?</div>
+                    <div class="options">
+                        <div class="option">A) Intersection</div>
+                        <div class="option">B) Color</div>
+                        <div class="option">C) Lighting</div>
+                        <div class="option">D) Shading</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 469</div>
+                    <div class="question-text">What is an example of "Image Processing"?</div>
+                    <div class="options">
+                        <div class="option">A) Enhancing contrast or eliminating noise</div>
+                        <div class="option">B) Creating a 3D model from scratch</div>
+                        <div class="option">C) Animating a character</div>
+                        <div class="option">D) Designing a house in CAD</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 470</div>
+                    <div class="question-text">What is an example of "Computer Vision"?</div>
+                    <div class="options">
+                        <div class="option">A) Reconstructing a 3D model from images</div>
+                        <div class="option">B) Drawing a 2D line</div>
+                        <div class="option">C) Creating a photorealistic image from a model</div>
+                        <div class="option">D) Designing a magazine layout</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 471</div>
+                    <div class="question-text">What is a `CRT`?</div>
+                    <div class="options">
+                        <div class="option">A) Cathode-Ray Tube</div>
+                        <div class="option">B) Computer Raster Technology</div>
+                        <div class="option">C) Color Rendering Tool</div>
+                        <div class="option">D) Current Raster Transformation</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 472</div>
+                    <div class="question-text">What is a `Video Controller`?</div>
+                    <div class="options">
+                        <div class="option">A) A component in a raster display system that converts the refresh buffer to the video signal</div>
+                        <div class="option">B) A component in a vector display system</div>
+                        <div class="option">C) The mouse or keyboard</div>
+                        <div class="option">D) The main CPU</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 473</div>
+                    <div class="question-text">What C-language type corresponds to `GLshort`?</div>
+                    <div class="options">
+                        <div class="option">A) `short`</div>
+                        <div class="option">B) `int`</div>
+                        <div class="option">C) `long`</div>
+                        <div class="option">D) `signed char`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 474</div>
+                    <div class="question-text">What C-language type corresponds to `GLushort`?</div>
+                    <div class="options">
+                        <div class="option">A) `short`</div>
+                        <div class="option">B) `unsigned short`</div>
+                        <div class="option">C) `unsigned int`</div>
+                        <div class="option">D) `unsigned long`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 475</div>
+                    <div class="question-text">What C-language type corresponds to `GLuint`?</div>
+                    <div class="options">
+                        <div class="option">A) `int`</div>
+                        <div class="option">B) `short`</div>
+                        <div class="option">C) `unsigned long`</div>
+                        <div class="option">D) `unsigned char`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 476</div>
+                    <div class="question-text">What is `GL_COLOR_BUFFER_BIT`?</div>
+                    <div class="options">
+                        <div class="option">A) A constant used with `glClear` to specify clearing the color buffer</div>
+                        <div class="option">B) A constant for setting the color to 1 bit</div>
+                        <div class="option">C) A data type</div>
+                        <div class="option">D) A function</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 477</div>
+                    <div class="question-text">What is `GL_PROJECTION`?</div>
+                    <div class="options">
+                        <div class="option">A) A constant used with `glMatrixMode` to specify the projection matrix</div>
+                        <div class="option">B) A function for 3D projection</div>
+                        <div class="option">C) A data type</div>
+                        <div class="option">D) A primitive type</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 478</div>
+                    <div class="question-text">What does `glBegin(GL_POINTS)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Begins drawing a series of points</div>
+                        <div class="option">B) Begins drawing a polygon</div>
+                        <div class="option">C) Sets the point size</div>
+                        <div class="option">D) Ends the drawing of points</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 479</div>
+                    <div class="question-text">What does `GL_TRIANGLES` do?</div>
+                    <div class="options">
+                        <div class="option">A) Takes vertices three at a time and draws a separate triangle for each</div>
+                        <div class="option">B) Draws a connected strip of triangles</div>
+                        <div class="option">C) Draws triangles sharing one vertex</div>
+                        <div class="option">D) Draws a triangle outline</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 480</div>
+                    <div class="question-text">What does `GL_QUADS` do?</div>
+                    <div class="options">
+                        <div class="option">A) Takes vertices four at a time and draws a separate quadrilateral for each</div>
+                        <div class="option">B) Draws a connected strip of quadrilaterals</div>
+                        <div class="option">C) Draws a quadrilateral outline</div>
+                        <div class="option">D) Is a shortcut for `glRecti`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 481</div>
+                    <div class="question-text">What is `GL_POLYGON` used for?</div>
+                    <div class="options">
+                        <div class="option">A) Drawing a single, convex, filled polygon</div>
+                        <div class="option">B) Drawing a polygon outline</div>
+                        <div class="option">C) Drawing many separate polygons</div>
+                        <div class="option">D) Drawing a non-simple polygon</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 482</div>
+                    <div class="question-text">What is a "non-simple" polygon?</div>
+                    <div class="options">
+                        <div class="option">A) A polygon whose edges cross, or one that has holes</div>
+                        <div class="option">B) A polygon with fewer than 3 sides</div>
+                        <div class="option">C) A polygon that is not filled</div>
+                        <div class="option">D) A polygon drawn with `GL_LINE_LOOP`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 483</div>
+                    <div class="question-text">Can non-simple polygons (like Polygon C and D in the diagram) be filled?</div>
+                    <div class="options">
+                        <div class="option">A) Yes</div>
+                        <div class="option">B) No</div>
+                        <div class="option">C) Only if they are convex</div>
+                        <div class="option">D) Only if they have no holes</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 484</div>
+                    <div class="question-text">What are the attributes of a filled region?</div>
+                    <div class="options">
+                        <div class="option">A) The attributes of the enclosing border</div>
+                        <div class="option">B) The pattern and color of the filling</div>
+                        <div class="option">C) Both A and B</div>
+                        <div class="option">D) Only the color of the filling</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 485</div>
+                    <div class="question-text">What does a routine like `setDash(dash7)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Sets the polyline attribute to be dashed</div>
+                        <div class="option">B) Sets the line thickness</div>
+                        <div class="option">C) Draws 7 dashes</div>
+                        <div class="option">D) Sets the color to gray</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 486</div>
+                    <div class="question-text">What does a routine like `setLineThickness(thickness)` do?</div>
+                    <div class="options">
+                        <div class="option">A) Sets the polyline line-thickness attribute</div>
+                        <div class="option">B) Sets the dash pattern</div>
+                        <div class="option">C) Sets the text font size</div>
+                        <div class="option">D) Sets the polygon fill pattern</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 487</div>
+                    <div class="question-text">What is `GLboolean` an OpenGL type definition for?</div>
+                    <div class="options">
+                        <div class="option">A) `unsigned char`</div>
+                        <div class="option">B) `int`</div>
+                        <div class="option">C) `bool`</div>
+                        <div class="option">D) `float`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 488</div>
+                    <div class="question-text">What is `GLclampf` an OpenGL type definition for?</div>
+                    <div class="options">
+                        <div class="option">A) `float`</div>
+                        <div class="option">B) `double`</div>
+                        <div class="option">C) `int`</div>
+                        <div class="option">D) `char`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 489</div>
+                    <div class="question-text">What is `GLclampd` an OpenGL type definition for?</div>
+                    <div class="options">
+                        <div class="option">A) `float`</div>
+                        <div class="option">B) `double`</div>
+                        <div class="option">C) `int`</div>
+                        <div class="option">D) `long`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 490</div>
+                    <div class="question-text">What is `GLenum` an OpenGL type definition for?</div>
+                    <div class="options">
+                        <div class="option">A) `unsigned char`</div>
+                        <div class="option">B) `unsigned short`</div>
+                        <div class="option">C) `unsigned long`</div>
+                        <div class="option">D) `int`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 491</div>
+                    <div class="question-text">What is `GLbitfield` an OpenGL type definition for?</div>
+                    <div class="options">
+                        <div class="option">A) `unsigned char`</div>
+                        <div class="option">B) `unsigned short`</div>
+                        <div class="option">C) `unsigned long`</div>
+                        <div class="option">D) `float`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: C</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 492</div>
+                    <div class="question-text">What function is used to plot the sinc function `sin(pi*x) / (pi*x)` in the example?</div>
+                    <div class="options">
+                        <div class="option">A) `glBegin(GL_LINE_STRIP)`</div>
+                        <div class="option">B) `glBegin(GL_POINTS)`</div>
+                        <div class="option">C) `glBegin(GL_POLYGON)`</div>
+                        <div class="option">D) `glRecti()`</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 493</div>
+                    <div class="question-text">To set a window automatically, the program needs to pass over the data how many times?</div>
+                    <div class="options">
+                        <div class="option">A) Once (to draw)</div>
+                        <div class="option">B) Twice (once to calculate boundaries, once to draw)</div>
+                        <div class="option">C) Three times (to calculate x, y, and z)</div>
+                        <div class="option">D) It does not need to pass over the data</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 494</div>
+                    <div class="question-text">In the first pass for automatically setting a window, what is the program doing?</div>
+                    <div class="options">
+                        <div class="option">A) Drawing the data</div>
+                        <div class="option">B) Finding the min and max coordinates (e.g., ymin, ymax)</div>
+                        <div class="option">C) Setting the viewport</div>
+                        <div class="option">D) Clipping the data</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: B</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 495</div>
+                    <div class="question-text">In the second pass for automatically setting a window, what is the program doing?</div>
+                    <div class="options">
+                        <div class="option">A) Drawing the data</div>
+                        <div class="option">B) Finding the min and max coordinates</div>
+                        <div class="option">C) Setting the window boundaries</div>
+                        <div class="option">D) Calculating the aspect ratio</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 496</div>
+                    <div class="question-text">What is the "Anatomy of Open GL" diagram showing?</div>
+                    <div class="options">
+                        <div class="option">A) The relationship between the application, GLUT, and callback functions</div>
+                        <div class="option">B) The hardware components of a graphics card</div>
+                        <div class="option">C) The different types of OpenGL primitives</div>
+                        <div class="option">D) The window-to-viewport mapping</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-number">Question 497</div>
+                    <div class="question-text">What is `GL_MODELVIEW`?</div>
+                    <div class="options">
+                        <div class="option">A) A constant used with `glMatrixMode` to specify the modelview matrix</div>
+                        <div class="option">B) A constant for the projection matrix</div>
+                        <div class="option">C) A function for loading a model</div>
+                        <div class="option">D) A primitive type</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 498</div>
+                    <div class="question-text">What does the `myMouse` callback receive?</div>
+                    <div class="options">
+                        <div class="option">A) The button, state, and x, y coordinates</div>
+                        <div class="option">B) Only the x, y coordinates</div>
+                        <div class="option">C) The key pressed</div>
+                        <div class="option">D) The new window width and height</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 499</div>
+                    <div class="question-text">What does the `myKeyboard` callback receive?</div>
+                    <div class="options">
+                        <div class="option">A) The key (as `unsigned char`), and the mouse x, y coordinates</div>
+                        <div class="option">B) Only the key pressed</div>
+                        <div class="option">C) The button and state</div>
+                        <div class="option">D) The new window width and height</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+                <div class="question">
+                    <div class="question-number">Question 500</div>
+                    <div class="question-text">What does the `myReshape` callback receive?</div>
+                    <div class="options">
+                        <div class="option">A) The new width (`GLsizei W`) and height (`GLsizei H`)</div>
+                        <div class="option">B) The mouse x, y coordinates</div>
+                        <div class="option">C) The key pressed</div>
+                        <div class="option">D) No parameters</div>
+                    </div>
+                    <div class="correct-answer">Correct Answer: A</div>
+                </div>
+
+
+            </div>
+            
+            </div>
+
+        <div class="footer">
+            <p>Computer Graphics Midterm MCQ Bank - Complete Coverage of All 3 Chapters | 500+ Questions | <span class="icon-code">&lt;/&gt;</span> Mohammed Shoaib</p>
+        </div>
+    </div>
+</body>
+</html>
